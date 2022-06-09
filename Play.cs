@@ -42,54 +42,54 @@ namespace DrawEveything
             while (true)
             {
                 receive = (SocketData)socket.Receive();
-                isnotReceive = false;
+                //if (!isnotReceive)
+                //{
+                    isnotReceive = true;
+                    int x1 = receive.cX;
+                    int y1 = receive.cY;
+                    int x2 = receive.sX;
+                    int y2 = receive.sY;
+                    if (receive.Status == "paint")
+                    {
+                        p1.Width = receive.width;
+                        //p.Color = receive.color;
+                        switch (receive.index)
+                        {
+                            case 1:
+                                //label1.Text = receive.cY.ToString();
+                                g1.DrawLine(p1, x1, y1, x2, y2);
+                                break;
+                            case 2:
+                                g1.DrawLine(erase, x1, y1, x2, y2);
+                                break;
+                            case 3:
+                                g1.DrawEllipse(p1, x1, y1, x2, y2);
+                                break;
+                            case 4:
+                                g1.DrawRectangle(p1, x1, y1, x2, y2);
+                                break;
+                            case 5:
+                                g1.DrawLine(p1, x1, y1, x2, y2);
+                                break;
+                            case 6:
+                                g1.Clear(Color.White);
+                                pic.Image = bm;
+                                break;
+                            case 7:
+
+                                break;
+                        }
+                    }
+                    else if (receive.Status == "chat")
+                    {
+                        AddMessage(receive.Username + ": " + receive.chat);
+                    }
+               // }
             }
         }
         private void Play_Activated(object sender, EventArgs e)
         {
-            if (!isnotReceive)
-            {
-                isnotReceive = true;
-                int x1 = receive.cX;
-                int y1 = receive.cY;
-                int x2 = receive.sX;
-                int y2 = receive.sY;
-                if (receive.Status == "paint")
-                {
-                    p1.Width = receive.width;
-                    //p.Color = receive.color;
-                    switch (receive.index)
-                    {
-                        case 1:
-                            //label1.Text = receive.cY.ToString();
-                            g1.DrawLine(p1, x1, y1, x2, y2);
-                            break;
-                        case 2:
-                            g1.DrawLine(erase, x1, y1, x2, y2);
-                            break;
-                        case 3:
-                            g1.DrawEllipse(p1, x1, y1, x2, y2);
-                            break;
-                        case 4:
-                            g1.DrawRectangle(p1, x1, y1, x2, y2);
-                            break;
-                        case 5:
-                            g1.DrawLine(p1, x1, y1, x2, y2);
-                            break;
-                        case 6:
-                            g1.Clear(Color.White);
-                            pic.Image = bm;
-                            break;
-                        case 7:
-
-                            break;
-                    }
-                }
-                else if (receive.Status == "chat")
-                {
-                    AddMessage(receive.Username + ": " + receive.chat);
-                }
-            }
+            
         }
         SocketManager socket = new SocketManager();
         SocketData receive;
