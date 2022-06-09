@@ -19,7 +19,9 @@ namespace DrawEveything
 
             bm = new Bitmap(pic.Width, pic.Height);
             g = Graphics.FromImage(bm);
-            g.Clear(Color.White);           
+            g.Clear(Color.White);
+            g1 = Graphics.FromImage(bm);
+            g1.Clear(Color.White);
             pic.Image = bm;
             for (int i = 1; i <= 5; i++)
             {
@@ -37,14 +39,19 @@ namespace DrawEveything
 
         private void Receive()
         {
-            g1 = Graphics.FromImage(bm);
-            g1.Clear(Color.White);
-            Pen p1 = new Pen(Color.Black, 1);
             while (true)
             {
-                SocketData receive = (SocketData)socket.Receive();
+                receive = (SocketData)socket.Receive();
+                isnotReceive = false;
+            }
+        }
+        private void Play_Activated(object sender, EventArgs e)
+        {
+            if (!isnotReceive)
+            {
+                isnotReceive = true;
                 int x1 = receive.cX;
-                int y1= receive.cY;
+                int y1 = receive.cY;
                 int x2 = receive.sX;
                 int y2 = receive.sY;
                 if (receive.Status == "paint")
@@ -55,7 +62,7 @@ namespace DrawEveything
                     {
                         case 1:
                             //label1.Text = receive.cY.ToString();
-                            g1.DrawLine(p1, x1,y1,x2,y2);
+                            g1.DrawLine(p1, x1, y1, x2, y2);
                             break;
                         case 2:
                             g1.DrawLine(erase, x1, y1, x2, y2);
@@ -84,8 +91,9 @@ namespace DrawEveything
                 }
             }
         }
-
         SocketManager socket = new SocketManager();
+        SocketData receive;
+        bool isnotReceive = true;
         Player player = new Player();
 
         #region paint
@@ -94,6 +102,8 @@ namespace DrawEveything
         bool paint = false;
         Point px, py;
         Pen p = new Pen(Color.Black, 1);
+
+        Pen p1 = new Pen(Color.Black, 1);
         Pen erase = new Pen(Color.White, 10);
         int index;
         int x, y, sX, sY, cX, cY;
@@ -266,6 +276,8 @@ namespace DrawEveything
         {
             index = 4;
         }
+
+      
 
         private void btn_color_Click(object sender, EventArgs e)
         {

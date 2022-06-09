@@ -12,12 +12,12 @@ namespace DrawEveything
     public class SocketData
     {
         public string Username, Password;
-        public string Status;
+        public string Status = "";
 
         public string chat;
 
         public int index;
-        public int x, y, sX, sY, cX, cY;
+        public int x = 0, y = 0, sX = 0, sY = 0, cX = 0, cY = 0;
 
         public string color;
         public float width;
