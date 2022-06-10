@@ -1,12 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
+using System.Drawing.Imaging;
+using System.IO;
 using System.Threading;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace DrawEveything
@@ -20,8 +17,6 @@ namespace DrawEveything
             bm = new Bitmap(pic.Width, pic.Height);
             g = Graphics.FromImage(bm);
             g.Clear(Color.White);
-            g1 = Graphics.FromImage(bm);
-            g1.Clear(Color.White);
             pic.Image = bm;
             for (int i = 1; i <= 5; i++)
             {
@@ -41,50 +36,21 @@ namespace DrawEveything
         {
             while (true)
             {
-                receive = (SocketData)socket.Receive();
-                //if (!isnotReceive)
-                //{
-                    isnotReceive = true;
-                    int x1 = receive.cX;
-                    int y1 = receive.cY;
-                    int x2 = receive.sX;
-                    int y2 = receive.sY;
-                    if (receive.Status == "paint")
-                    {
-                        p1.Width = receive.width;
-                        //p.Color = receive.color;
-                        switch (receive.index)
-                        {
-                            case 1:
-                                //label1.Text = receive.cY.ToString();
-                                g1.DrawLine(p1, x1, y1, x2, y2);
-                                break;
-                            case 2:
-                                g1.DrawLine(erase, x1, y1, x2, y2);
-                                break;
-                            case 3:
-                                g1.DrawEllipse(p1, x1, y1, x2, y2);
-                                break;
-                            case 4:
-                                g1.DrawRectangle(p1, x1, y1, x2, y2);
-                                break;
-                            case 5:
-                                g1.DrawLine(p1, x1, y1, x2, y2);
-                                break;
-                            case 6:
-                                g1.Clear(Color.White);
-                                pic.Image = bm;
-                                break;
-                            case 7:
-
-                                break;
-                        }
-                    }
-                    else if (receive.Status == "chat")
-                    {
-                        AddMessage(receive.Username + ": " + receive.chat);
-                    }
-               // }
+               receive = (SocketData)socket.Receive();
+               switch (receive.Status)
+               {
+                   case "paint":
+                      using (var ms = new MemoryStream(receive.image))
+                      {
+                         Bitmap btm = new Bitmap(ms);
+                         bm = btm;
+                         pic.Image = bm;
+                      }
+                      break;
+                   case "chat":
+                       AddMessage(receive.Username + ": " + receive.chat);
+                       break;
+               }            
             }
         }
         private void Play_Activated(object sender, EventArgs e)
@@ -93,17 +59,16 @@ namespace DrawEveything
         }
         SocketManager socket = new SocketManager();
         SocketData receive;
-        bool isnotReceive = true;
+        //bool isnotReceive = true;
         Player player = new Player();
 
         #region paint
         Bitmap bm;
-        Graphics g,g1;
+        Graphics g;
         bool paint = false;
         Point px, py;
         Pen p = new Pen(Color.Black, 1);
 
-        Pen p1 = new Pen(Color.Black, 1);
         Pen erase = new Pen(Color.White, 10);
         int index;
         int x, y, sX, sY, cX, cY;
@@ -111,7 +76,22 @@ namespace DrawEveything
 
         ColorDialog dlg = new ColorDialog();
         Color new_color = Color.Black;       
-        
+
+        private void Send()
+        {
+            Image image = bm.Clone(new Rectangle(0, 0, pic.Width, pic.Height), bm.PixelFormat);
+            using (MemoryStream ms = new MemoryStream())
+            {
+                image.Save(ms, ImageFormat.Jpeg);
+                ms.ToArray();
+
+                SocketData paint = new SocketData();
+                paint.image = ms.ToArray();
+                paint.Status = "paint";
+                socket.Send(paint);
+            }
+        }
+
         private void btn_pencil_Click(object sender, EventArgs e)
         {
             index = 1;
@@ -133,16 +113,12 @@ namespace DrawEveything
                 if (index == 1)
                 {
                     px = e.Location;
-                    SocketData pencil = new SocketData(new_color.ToString(), width, px.X, px.Y, py.X, py.Y, 1, "paint");
-                    socket.Send(pencil);
                     g.DrawLine(p, px, py);
                     py = px;                   
                 }
                 if (index == 2)
                 {
                     px = e.Location;
-                    SocketData eraser = new SocketData(new_color.ToString(), width, px.X, px.Y, py.X, py.Y, 2, "paint");
-                    socket.Send(eraser);
                     g.DrawLine(erase, px, py);
                     py = px;
                 }
@@ -178,17 +154,20 @@ namespace DrawEveything
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-
+            var sfd = new SaveFileDialog();
+            sfd.Filter = "Image(*jpg)|*.jpg|(*.*|*.*";
+            if (sfd.ShowDialog() == DialogResult.OK)
+            {
+                Image btm = bm.Clone(new Rectangle(0, 0, pic.Width, pic.Height), bm.PixelFormat);
+                btm.Save(sfd.FileName,ImageFormat.Jpeg);
+            }
         }
 
         private void btnClear_Click(object sender, EventArgs e)
         {
-            SocketData clear = new SocketData();
-            clear.Status = "paint";
-            clear.index = 6;
-            socket.Send(clear);
             g.Clear(Color.White);
             pic.Image = bm;
+            Send();
             index = 0;
         }
 
@@ -198,13 +177,7 @@ namespace DrawEveything
             {
                 Point point = set_point(pic, e.Location);
                 Fill(bm, point.X, point.Y, new_color);
-                SocketData fill = new SocketData();
-                fill.Status = "paint";
-                fill.index = 7;
-                fill.x = point.X;
-                fill.y = point.Y;
-                fill.color = new_color.ToString();
-                socket.Send(fill);
+                Send();
             }
         }
 
@@ -233,21 +206,17 @@ namespace DrawEveything
             switch (index)
             {
                 case 3:
-                    SocketData elipse = new SocketData(new_color.ToString(), width, cX, cY, sX, sY, 3, "paint");
-                    socket.Send(elipse);
-                    g.DrawEllipse(p, cX, cY, sX, sY);
+                    g.DrawEllipse(p, cX, cY, sX, sY);                   
                     break;
                 case 4:
-                    SocketData Rec = new SocketData(new_color.ToString(), width, cX, cY, sX, sY, 4, "paint");
-                    socket.Send(Rec);
-                    g.DrawRectangle(p, cX, cY, sX, sY);
+                    g.DrawRectangle(p, cX, cY, sX, sY);      
                     break;
                 case 5:
-                    SocketData line = new SocketData(new_color.ToString(), width, cX, cY, x, y, 5, "paint");
-                    socket.Send(line);
                     g.DrawLine(p, cX, cY, x, y);
                     break;
             }
+
+            Send();
         }
 
         private void btnTopic1_Click(object sender, EventArgs e)

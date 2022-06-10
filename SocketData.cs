@@ -17,10 +17,9 @@ namespace DrawEveything
         public string chat;
 
         public int index;
-        public int x = 0, y = 0, sX = 0, sY = 0, cX = 0, cY = 0;
 
-        public string color;
-        public float width;
+        public byte[] image;
+
         public SocketData() { }
 
         public SocketData(string username, string password)
@@ -31,12 +30,6 @@ namespace DrawEveything
 
         public SocketData(string c, float Width, int cX, int cY, int sX, int sY, int Index, string status) 
         {
-            this.color = c;
-            this.width = Width;
-            this.cX = cX;
-            this.cY = cY;
-            this.sX = sX;
-            this.sY = sY;
             this.index = Index;
             this.Status = status;
         }

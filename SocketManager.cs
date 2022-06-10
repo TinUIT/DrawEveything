@@ -87,60 +87,59 @@ namespace DrawEveything
             {
                 try
                 {
-                    byte[] data = new byte[1024];
-                    client.Receive(data); 
+                    byte[] data = new byte[1024*5000];
+                    client.Receive(data);
                     
-                    SocketData receive = (SocketData)DeserializeData(data);   
-                    SQLmanager checklogin = new SQLmanager();
-                    SocketData respone = new SocketData();
+                        SocketData receive = (SocketData)DeserializeData(data);
+                        SQLmanager checklogin = new SQLmanager();
+                        SocketData respone = new SocketData();
 
-                    switch(receive.Status)
-                    {
-                        case "login":
-                            if (checklogin.CheckLogin(receive.Username, receive.Password))
-                            {
-                                respone.Status = "Success";
-                                client.Send(SerializeData(respone));
-                            }
-                            else
-                            {
-                                respone.Status = "Fail";
-                                client.Send(SerializeData(respone));
-                            }
-                            break;
-                        case "register":
-                            if (checklogin.CheckRegister(receive.Username, receive.Password))
-                            {
-                                respone.Status = "Success";
-                                client.Send(SerializeData(respone));
-                            }
-                            else
-                            {
-                                respone.Status = "Fail";
-                                client.Send(SerializeData(respone));
-                            }
-                            break;
-                        case "paint":
-                        case "chat":
-                            foreach (Socket socket in clientList)
-                            {
-                                if ( socket != client)
+                        switch (receive.Status)
+                        {
+                            case "login":
+                                if (checklogin.CheckLogin(receive.Username, receive.Password))
                                 {
-                                    socket.Send(SerializeData(receive));
+                                    respone.Status = "Success";
+                                    client.Send(SerializeData(respone));
                                 }
-                            }
-                            break;
-                        case "answer":
-                            break;
-                    }
-
+                                else
+                                {
+                                    respone.Status = "Fail";
+                                    client.Send(SerializeData(respone));
+                                }
+                                break;
+                            case "register":
+                                if (checklogin.CheckRegister(receive.Username, receive.Password))
+                                {
+                                    respone.Status = "Success";
+                                    client.Send(SerializeData(respone));
+                                }
+                                else
+                                {
+                                    respone.Status = "Fail";
+                                    client.Send(SerializeData(respone));
+                                }
+                                break;
+                            case "paint":
+                            case "chat":
+                                foreach (Socket socket in clientList)
+                                {
+                                    if (socket != client && socket != null)
+                                    {
+                                        socket.Send(SerializeData(receive));
+                                    }
+                                }
+                                //MessageBox.Show(receive.Status);
+                                break;
+                            case "answer":
+                                break;
+                        }
                 }
                 catch (Exception ex)
                 {
                     //MessageBox.Show(ex.ToString());
                     clientList.Remove(client);
                     client.Close();
-                    return;
                 }
             }
         }
@@ -149,7 +148,7 @@ namespace DrawEveything
         #region Both
         public static string sIP = "127.0.0.1";
         public int PORT = 9999;
-        public const int BUFFER = 1024;
+        public const int BUFFER = 1024*5000;
         //public bool isRecieve = false;
 
         public bool Send(object data)
@@ -162,7 +161,7 @@ namespace DrawEveything
         public object Receive()
         {
             byte[] receiveData = new byte[BUFFER];
-            bool isOk = ReceiveData(client, receiveData);
+            bool isOk = ReceiveData(client,receiveData);
 
             return DeserializeData(receiveData);
         }
@@ -173,7 +172,7 @@ namespace DrawEveything
         }
 
 
-        private bool ReceiveData(Socket target, byte[] data)
+        public bool ReceiveData(Socket target, byte[] data)
         {
             return target.Receive(data) == 1 ? true : false;
         }
