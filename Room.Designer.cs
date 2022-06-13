@@ -32,6 +32,8 @@
             this.btnRoom2 = new System.Windows.Forms.Button();
             this.lbRoom1 = new System.Windows.Forms.Label();
             this.lbRoom2 = new System.Windows.Forms.Label();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.SuspendLayout();
             // 
             // btnRoom1
@@ -74,18 +76,30 @@
             this.lbRoom2.TabIndex = 3;
             this.lbRoom2.Text = "Có 0 người";
             // 
+            // pictureBox2
+            // 
+            this.pictureBox2.Image = global::DrawEveything.Properties.Resources.Ảnh1;
+            this.pictureBox2.Location = new System.Drawing.Point(262, 32);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(294, 114);
+            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox2.TabIndex = 21;
+            this.pictureBox2.TabStop = false;
+            // 
             // Room
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.pictureBox2);
             this.Controls.Add(this.lbRoom2);
             this.Controls.Add(this.lbRoom1);
             this.Controls.Add(this.btnRoom2);
             this.Controls.Add(this.btnRoom1);
             this.Name = "Room";
             this.Text = "Room";
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -97,5 +111,6 @@
         private System.Windows.Forms.Button btnRoom2;
         private System.Windows.Forms.Label lbRoom1;
         private System.Windows.Forms.Label lbRoom2;
+        private System.Windows.Forms.PictureBox pictureBox2;
     }
 }

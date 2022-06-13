@@ -32,6 +32,8 @@
             this.tbIP = new System.Windows.Forms.TextBox();
             this.IP = new System.Windows.Forms.Label();
             this.btnCreate_Server = new System.Windows.Forms.Button();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.SuspendLayout();
             // 
             // btConnect
@@ -84,12 +86,23 @@
             this.btnCreate_Server.UseVisualStyleBackColor = false;
             this.btnCreate_Server.Click += new System.EventHandler(this.btnCreate_Server_Click);
             // 
+            // pictureBox2
+            // 
+            this.pictureBox2.Image = global::DrawEveything.Properties.Resources.Ảnh1;
+            this.pictureBox2.Location = new System.Drawing.Point(290, 35);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(294, 114);
+            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox2.TabIndex = 20;
+            this.pictureBox2.TabStop = false;
+            // 
             // Connect
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.pictureBox2);
             this.Controls.Add(this.btnCreate_Server);
             this.Controls.Add(this.btConnect);
             this.Controls.Add(this.tbIP);
@@ -97,6 +110,7 @@
             this.Name = "Connect";
             this.Text = "Connect";
             this.Shown += new System.EventHandler(this.Connect_Shown);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -108,6 +122,7 @@
         private System.Windows.Forms.TextBox tbIP;
         private System.Windows.Forms.Label IP;
         private System.Windows.Forms.Button btnCreate_Server;
+        private System.Windows.Forms.PictureBox pictureBox2;
     }
 }
 

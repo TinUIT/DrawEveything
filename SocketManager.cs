@@ -43,11 +43,13 @@ namespace DrawEveything
         #region server
 
         Socket server = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
-        List<Socket> clientList;
-        
+        List<Socket> clientList1;
+        List<Socket> clientList2;
+
         public void CreateServer()
         {
-            clientList = new List<Socket>();
+            clientList1 = new List<Socket>();
+            clientList2 = new List<Socket>();
 
             IPEndPoint IP = new IPEndPoint(IPAddress.Any, 9999);
             
@@ -60,7 +62,6 @@ namespace DrawEveything
                     while (true)
                     {
                         Socket client = server.Accept();  
-                        clientList.Add(client);
 
                         Thread receive = new Thread(ServerReceive);
                         receive.IsBackground = true;
@@ -82,7 +83,7 @@ namespace DrawEveything
         void ServerReceive(Object obj)
         {
             Socket client = (Socket)obj;
-
+            int room = 0;
             while (true)
             {
                 try
@@ -122,33 +123,67 @@ namespace DrawEveything
                                 break;
                             case "paint":
                             case "chat":
-                                foreach (Socket socket in clientList)
+                             if(room == 1)
+                                foreach (Socket socket in clientList1)
                                 {
                                     if (socket != client && socket != null)
                                     {
                                         socket.Send(SerializeData(receive));
                                     }
                                 }
+                             else if (room == 2)
+                             {
+                                foreach (Socket socket in clientList2)
+                                {
+                                        if (socket != client && socket != null)
+                                        {
+                                            socket.Send(SerializeData(receive));
+                                        }
+                                }
+                             }
                                 //MessageBox.Show(receive.Status);
                                 break;
                             case "answer":
+                                break;
+                            case "start":
+
+                            default:
+                                room = receive.Room;
+                                if (room == 1)
+                                {
+                                    if(clientList1.Count <= 10)
+                                        clientList1.Add(client);                                
+                                }
+                                else if (room == 2)
+                                {
+                                    clientList2.Add(client); 
+                                }
                                 break;
                         }
                 }
                 catch (Exception ex)
                 {
                     //MessageBox.Show(ex.ToString());
-                    clientList.Remove(client);
-                    client.Close();
+                    if (room == 1)
+                    {
+                        clientList1.Remove(client);
+                    }
+                    else if (room == 2)
+                    {
+                        clientList2.Remove(client);
+                    }
                 }
             }
         }
+
+
         #endregion
 
         #region Both
         public static string sIP = "127.0.0.1";
         public int PORT = 9999;
         public const int BUFFER = 1024*5000;
+        
         //public bool isRecieve = false;
 
         public bool Send(object data)

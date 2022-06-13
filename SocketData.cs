@@ -17,6 +17,7 @@ namespace DrawEveything
         public string chat;
 
         public int index;
+        public int Room = 0;
 
         public byte[] image;
 
