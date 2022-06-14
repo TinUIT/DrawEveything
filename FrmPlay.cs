@@ -6,6 +6,7 @@ using System.IO;
 using System.Threading;
 using System.Windows.Forms;
 
+
 namespace DrawEveything
 {
     public partial class FrmPlay : Form
@@ -13,6 +14,12 @@ namespace DrawEveything
         public FrmPlay()
         {
             InitializeComponent();
+            pgssBarCoolDown.Step = 100;
+            pgssBarCoolDown.Maximum = 90000;
+            pgssBarCoolDown.Value = 0;
+            timer.Interval = 100;
+            timer.Enabled = true;
+
             panelPaint.Enabled = false;
             bm = new Bitmap(pic.Width, pic.Height);
             g = Graphics.FromImage(bm);
@@ -30,11 +37,19 @@ namespace DrawEveything
             socket.ConnectServer();
             SocketData room = new SocketData();
             room.Room = player.getRoom();
+            room.Username = player.getUsername();
             socket.Send(room);
 
             Thread thread = new Thread(Receive);
             thread.IsBackground=true;
             thread.Start();
+
+
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            pgssBarCoolDown.PerformStep();
         }
 
         private void Receive()
@@ -44,7 +59,7 @@ namespace DrawEveything
                receive = (SocketData)socket.Receive();
                switch (receive.Status)
                {
-                   case "paint":
+                    case "paint":
                       using (var ms = new MemoryStream(receive.image))
                       {
                          Bitmap btm = new Bitmap(ms);
@@ -52,25 +67,42 @@ namespace DrawEveything
                          pic.Image = bm;
                       }
                       break;
-                   case "chat":
+                    case "chat":
                        AddMessage(receive.Username + ": " + receive.chat);
                        break;
-                   case "answer":
+                    case "answer":
+                       AddAnswer(receive.Username + ": " + receive.chat);
+                        break;
+                    case "start":
+                        if (receive.start)
+                        {
+                            start = true;
+                            panelPaint.Enabled = true;
+                            timer.Start();
+                            timer.Tick += new EventHandler(timer1_Tick);
+                            pgssBarCoolDown.Value = 0;
+                        }
                         break;
                    default:
+                        int i = 0;
+                        foreach (TextBox tb in textBoxesName)
+                        {
+                            string s = receive.players[i];
+                            if (!String.IsNullOrEmpty(s))
+                                tb.Text = receive.players[i];
+                            i++;
+                        }
                         break;
                }            
             }
         }
-        private void Play_Activated(object sender, EventArgs e)
-        {
-            
-        }
         SocketManager socket = new SocketManager();
         SocketData receive;
-        
+        System.Windows.Forms.Timer timer = new System.Windows.Forms.Timer();
         Player player = new Player();
-
+        List<TextBox> textBoxesName = new List<TextBox>();
+        List<TextBox> textBoxesMarked = new List<TextBox>();
+        bool start = false;
         #region paint
         Bitmap bm;
         Graphics g;
@@ -86,6 +118,7 @@ namespace DrawEveything
         ColorDialog dlg = new ColorDialog();
         Color new_color = Color.Black;       
 
+ 
         private void Send()
         {
             Image image = bm.Clone(new Rectangle(0, 0, pic.Width, pic.Height), bm.PixelFormat);
@@ -235,14 +268,19 @@ namespace DrawEveything
 
         private void btnTopic1_Click(object sender, EventArgs e)
         {
-
+            SocketData choose = new SocketData();
+            choose.chosenTopic = btnTopic1.Text;
+            choose.Status = "topic";
+            socket.Send(choose);
         }
 
         private void btbTopic2_Click(object sender, EventArgs e)
         {
-
+            SocketData choose = new SocketData();
+            choose.chosenTopic = btnTopic2.Text;
+            choose.Status = "topic";
+            socket.Send(choose);
         }
-
        
         private void cmbWidth_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -272,8 +310,8 @@ namespace DrawEveything
 
         private void btnAnswer_Click(object sender, EventArgs e)
         {
-            SendMessage();
-            AddMessage(player.getUsername() + ":" + tbChat.Text);
+            SendAnswer();
+            AddAnswer(player.getUsername() + ":" + tbAnswer.Text);
         }
 
         static Point set_point(PictureBox pb, Point pt)
@@ -297,7 +335,51 @@ namespace DrawEveything
         {
             SocketData start = new SocketData();
             start.Status = "start";
+            start.Room = player.getRoom();
             socket.Send(start);
+        }
+
+        private void FrmPlay_Load(object sender, EventArgs e)
+        {
+            textBoxesName.Add(tb1);
+            textBoxesMarked.Add(tb2);
+            textBoxesName.Add(tb3);
+            textBoxesMarked.Add(tb4);
+            textBoxesName.Add(tb5);
+            textBoxesMarked.Add(tb6);
+            textBoxesName.Add(tb7);
+            textBoxesMarked.Add(tb8);
+            textBoxesName.Add(tb9);
+            textBoxesMarked.Add(tb10);
+            textBoxesName.Add(tb11);
+            textBoxesMarked.Add(tb12);
+            textBoxesName.Add(tb13);
+            textBoxesMarked.Add(tb14);
+            textBoxesName.Add(tb15);
+            textBoxesMarked.Add(tb16);
+            textBoxesName.Add(tb17);
+            textBoxesMarked.Add(tb18);
+            textBoxesName.Add(tb19);
+            textBoxesMarked.Add(tb20);
+        }
+
+        private void FrmPlay_Activated(object sender, EventArgs e)
+        {
+            if (start)
+            {
+                btnTopic1.Visible = true;
+                btnTopic1.Enabled = true;
+                btnTopic1.Text = receive.topic1;
+
+                btnTopic2.Visible = true;
+                btnTopic2.Enabled = true;
+                btnTopic2.Text = receive.topic2;
+            }
+        }
+
+        private void FrmPlay_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            SocketData exit = new SocketData();
         }
 
         public void Fill(Bitmap bm, int x, int y, Color new_clr)
@@ -325,8 +407,8 @@ namespace DrawEveything
         #region Chat&Answer
          private void btn_Send_Click(object sender, EventArgs e)
          {
-            SendAnswer();
-            AddAnswer(player.getUsername() + ":" + tbChat.Text);
+            SendMessage();
+            AddMessage(player.getUsername() + ":" + tbChat.Text);
          }
         void SendMessage()
         {

@@ -37,7 +37,7 @@
             this.lvChat = new System.Windows.Forms.ListView();
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.btbTopic2 = new System.Windows.Forms.Button();
+            this.btnTopic2 = new System.Windows.Forms.Button();
             this.btnTopic1 = new System.Windows.Forms.Button();
             this.pic = new System.Windows.Forms.PictureBox();
             this.panelPaint = new System.Windows.Forms.Panel();
@@ -46,30 +46,32 @@
             this.cmbWidth = new System.Windows.Forms.ComboBox();
             this.btnSave = new System.Windows.Forms.Button();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.textBox4 = new System.Windows.Forms.TextBox();
-            this.textBox5 = new System.Windows.Forms.TextBox();
-            this.textBox6 = new System.Windows.Forms.TextBox();
-            this.textBox7 = new System.Windows.Forms.TextBox();
-            this.textBox8 = new System.Windows.Forms.TextBox();
-            this.textBox9 = new System.Windows.Forms.TextBox();
-            this.textBox10 = new System.Windows.Forms.TextBox();
-            this.textBox11 = new System.Windows.Forms.TextBox();
-            this.textBox12 = new System.Windows.Forms.TextBox();
-            this.textBox13 = new System.Windows.Forms.TextBox();
-            this.textBox14 = new System.Windows.Forms.TextBox();
-            this.textBox15 = new System.Windows.Forms.TextBox();
-            this.textBox16 = new System.Windows.Forms.TextBox();
-            this.textBox17 = new System.Windows.Forms.TextBox();
-            this.textBox18 = new System.Windows.Forms.TextBox();
-            this.textBox19 = new System.Windows.Forms.TextBox();
-            this.textBox20 = new System.Windows.Forms.TextBox();
-            this.textBox21 = new System.Windows.Forms.TextBox();
-            this.textBox22 = new System.Windows.Forms.TextBox();
-            this.textBox23 = new System.Windows.Forms.TextBox();
+            this.tb1 = new System.Windows.Forms.TextBox();
+            this.tb2 = new System.Windows.Forms.TextBox();
+            this.tb4 = new System.Windows.Forms.TextBox();
+            this.tb3 = new System.Windows.Forms.TextBox();
+            this.tb6 = new System.Windows.Forms.TextBox();
+            this.tb5 = new System.Windows.Forms.TextBox();
+            this.tb8 = new System.Windows.Forms.TextBox();
+            this.tb7 = new System.Windows.Forms.TextBox();
+            this.tb10 = new System.Windows.Forms.TextBox();
+            this.tb9 = new System.Windows.Forms.TextBox();
+            this.tb20 = new System.Windows.Forms.TextBox();
+            this.tb19 = new System.Windows.Forms.TextBox();
+            this.tb18 = new System.Windows.Forms.TextBox();
+            this.tb17 = new System.Windows.Forms.TextBox();
+            this.tb16 = new System.Windows.Forms.TextBox();
+            this.tb15 = new System.Windows.Forms.TextBox();
+            this.tb14 = new System.Windows.Forms.TextBox();
+            this.tb13 = new System.Windows.Forms.TextBox();
+            this.tb12 = new System.Windows.Forms.TextBox();
+            this.tb11 = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.lbHintAnswer = new System.Windows.Forms.Label();
             this.lbRoom = new System.Windows.Forms.Label();
+            this.btnStart = new System.Windows.Forms.Button();
+            this.pgssBarCoolDown = new System.Windows.Forms.ProgressBar();
             this.btn_color = new DrawEveything.RoundButton();
             this.btnRectangle = new DrawEveything.RoundButton();
             this.btn_line = new DrawEveything.RoundButton();
@@ -77,7 +79,6 @@
             this.btn_fill = new DrawEveything.RoundButton();
             this.btn_Eraser = new DrawEveything.RoundButton();
             this.btn_pencil = new DrawEveything.RoundButton();
-            this.btnStart = new System.Windows.Forms.Button();
             this.panel3.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pic)).BeginInit();
@@ -140,7 +141,7 @@
             this.panel3.Controls.Add(this.tbAnswer);
             this.panel3.Controls.Add(this.lvChat);
             this.panel3.Controls.Add(this.lvAnswer);
-            this.panel3.Location = new System.Drawing.Point(292, 499);
+            this.panel3.Location = new System.Drawing.Point(297, 514);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(631, 203);
             this.panel3.TabIndex = 8;
@@ -164,7 +165,7 @@
             // 
             // panel2
             // 
-            this.panel2.Controls.Add(this.btbTopic2);
+            this.panel2.Controls.Add(this.btnTopic2);
             this.panel2.Controls.Add(this.btnTopic1);
             this.panel2.Controls.Add(this.progressBar1);
             this.panel2.Controls.Add(this.pic);
@@ -173,22 +174,24 @@
             this.panel2.Size = new System.Drawing.Size(714, 359);
             this.panel2.TabIndex = 7;
             // 
-            // btbTopic2
+            // btnTopic2
             // 
-            this.btbTopic2.BackColor = System.Drawing.Color.White;
-            this.btbTopic2.Location = new System.Drawing.Point(415, 232);
-            this.btbTopic2.Name = "btbTopic2";
-            this.btbTopic2.Size = new System.Drawing.Size(145, 50);
-            this.btbTopic2.TabIndex = 3;
-            this.btbTopic2.Text = "button2";
-            this.btbTopic2.UseVisualStyleBackColor = false;
-            this.btbTopic2.Visible = false;
-            this.btbTopic2.Click += new System.EventHandler(this.btbTopic2_Click);
+            this.btnTopic2.BackColor = System.Drawing.Color.White;
+            this.btnTopic2.Enabled = false;
+            this.btnTopic2.Location = new System.Drawing.Point(437, 231);
+            this.btnTopic2.Name = "btnTopic2";
+            this.btnTopic2.Size = new System.Drawing.Size(145, 50);
+            this.btnTopic2.TabIndex = 3;
+            this.btnTopic2.Text = "button2";
+            this.btnTopic2.UseVisualStyleBackColor = false;
+            this.btnTopic2.Visible = false;
+            this.btnTopic2.Click += new System.EventHandler(this.btbTopic2_Click);
             // 
             // btnTopic1
             // 
             this.btnTopic1.BackColor = System.Drawing.Color.White;
-            this.btnTopic1.Location = new System.Drawing.Point(145, 236);
+            this.btnTopic1.Enabled = false;
+            this.btnTopic1.Location = new System.Drawing.Point(121, 231);
             this.btnTopic1.Name = "btnTopic1";
             this.btnTopic1.Size = new System.Drawing.Size(145, 50);
             this.btnTopic1.TabIndex = 2;
@@ -202,7 +205,7 @@
             this.pic.BackColor = System.Drawing.Color.White;
             this.pic.Location = new System.Drawing.Point(0, 0);
             this.pic.Name = "pic";
-            this.pic.Size = new System.Drawing.Size(714, 356);
+            this.pic.Size = new System.Drawing.Size(714, 359);
             this.pic.TabIndex = 0;
             this.pic.TabStop = false;
             this.pic.Paint += new System.Windows.Forms.PaintEventHandler(this.pctPaint_Paint);
@@ -214,7 +217,6 @@
             // panelPaint
             // 
             this.panelPaint.BackColor = System.Drawing.Color.White;
-            this.panelPaint.Controls.Add(this.btnStart);
             this.panelPaint.Controls.Add(this.pic_color);
             this.panelPaint.Controls.Add(this.btnClear);
             this.panelPaint.Controls.Add(this.cmbWidth);
@@ -226,9 +228,9 @@
             this.panelPaint.Controls.Add(this.btn_fill);
             this.panelPaint.Controls.Add(this.btn_Eraser);
             this.panelPaint.Controls.Add(this.btn_pencil);
-            this.panelPaint.Location = new System.Drawing.Point(18, 91);
+            this.panelPaint.Location = new System.Drawing.Point(12, 133);
             this.panelPaint.Name = "panelPaint";
-            this.panelPaint.Size = new System.Drawing.Size(205, 611);
+            this.panelPaint.Size = new System.Drawing.Size(205, 584);
             this.panelPaint.TabIndex = 6;
             // 
             // pic_color
@@ -285,185 +287,185 @@
             this.pictureBox2.TabIndex = 11;
             this.pictureBox2.TabStop = false;
             // 
-            // textBox4
+            // tb1
             // 
-            this.textBox4.Enabled = false;
-            this.textBox4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox4.Location = new System.Drawing.Point(975, 84);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(183, 35);
-            this.textBox4.TabIndex = 12;
+            this.tb1.Enabled = false;
+            this.tb1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tb1.Location = new System.Drawing.Point(975, 84);
+            this.tb1.Name = "tb1";
+            this.tb1.Size = new System.Drawing.Size(183, 35);
+            this.tb1.TabIndex = 12;
             // 
-            // textBox5
+            // tb2
             // 
-            this.textBox5.Enabled = false;
-            this.textBox5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox5.Location = new System.Drawing.Point(1188, 83);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(64, 35);
-            this.textBox5.TabIndex = 13;
+            this.tb2.Enabled = false;
+            this.tb2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tb2.Location = new System.Drawing.Point(1188, 83);
+            this.tb2.Name = "tb2";
+            this.tb2.Size = new System.Drawing.Size(64, 35);
+            this.tb2.TabIndex = 13;
             // 
-            // textBox6
+            // tb4
             // 
-            this.textBox6.Enabled = false;
-            this.textBox6.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox6.Location = new System.Drawing.Point(1188, 133);
-            this.textBox6.Name = "textBox6";
-            this.textBox6.Size = new System.Drawing.Size(64, 35);
-            this.textBox6.TabIndex = 15;
+            this.tb4.Enabled = false;
+            this.tb4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tb4.Location = new System.Drawing.Point(1188, 133);
+            this.tb4.Name = "tb4";
+            this.tb4.Size = new System.Drawing.Size(64, 35);
+            this.tb4.TabIndex = 15;
             // 
-            // textBox7
+            // tb3
             // 
-            this.textBox7.Enabled = false;
-            this.textBox7.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox7.Location = new System.Drawing.Point(975, 134);
-            this.textBox7.Name = "textBox7";
-            this.textBox7.Size = new System.Drawing.Size(183, 35);
-            this.textBox7.TabIndex = 14;
+            this.tb3.Enabled = false;
+            this.tb3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tb3.Location = new System.Drawing.Point(975, 134);
+            this.tb3.Name = "tb3";
+            this.tb3.Size = new System.Drawing.Size(183, 35);
+            this.tb3.TabIndex = 14;
             // 
-            // textBox8
+            // tb6
             // 
-            this.textBox8.Enabled = false;
-            this.textBox8.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox8.Location = new System.Drawing.Point(1188, 189);
-            this.textBox8.Name = "textBox8";
-            this.textBox8.Size = new System.Drawing.Size(64, 35);
-            this.textBox8.TabIndex = 17;
+            this.tb6.Enabled = false;
+            this.tb6.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tb6.Location = new System.Drawing.Point(1188, 189);
+            this.tb6.Name = "tb6";
+            this.tb6.Size = new System.Drawing.Size(64, 35);
+            this.tb6.TabIndex = 17;
             // 
-            // textBox9
+            // tb5
             // 
-            this.textBox9.Enabled = false;
-            this.textBox9.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox9.Location = new System.Drawing.Point(975, 190);
-            this.textBox9.Name = "textBox9";
-            this.textBox9.Size = new System.Drawing.Size(183, 35);
-            this.textBox9.TabIndex = 16;
+            this.tb5.Enabled = false;
+            this.tb5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tb5.Location = new System.Drawing.Point(975, 190);
+            this.tb5.Name = "tb5";
+            this.tb5.Size = new System.Drawing.Size(183, 35);
+            this.tb5.TabIndex = 16;
             // 
-            // textBox10
+            // tb8
             // 
-            this.textBox10.Enabled = false;
-            this.textBox10.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox10.Location = new System.Drawing.Point(1188, 239);
-            this.textBox10.Name = "textBox10";
-            this.textBox10.Size = new System.Drawing.Size(64, 35);
-            this.textBox10.TabIndex = 19;
+            this.tb8.Enabled = false;
+            this.tb8.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tb8.Location = new System.Drawing.Point(1188, 243);
+            this.tb8.Name = "tb8";
+            this.tb8.Size = new System.Drawing.Size(64, 35);
+            this.tb8.TabIndex = 19;
             // 
-            // textBox11
+            // tb7
             // 
-            this.textBox11.Enabled = false;
-            this.textBox11.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox11.Location = new System.Drawing.Point(975, 239);
-            this.textBox11.Name = "textBox11";
-            this.textBox11.Size = new System.Drawing.Size(183, 35);
-            this.textBox11.TabIndex = 18;
+            this.tb7.Enabled = false;
+            this.tb7.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tb7.Location = new System.Drawing.Point(975, 243);
+            this.tb7.Name = "tb7";
+            this.tb7.Size = new System.Drawing.Size(183, 35);
+            this.tb7.TabIndex = 18;
             // 
-            // textBox12
+            // tb10
             // 
-            this.textBox12.Enabled = false;
-            this.textBox12.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox12.Location = new System.Drawing.Point(1188, 299);
-            this.textBox12.Name = "textBox12";
-            this.textBox12.Size = new System.Drawing.Size(64, 35);
-            this.textBox12.TabIndex = 21;
+            this.tb10.Enabled = false;
+            this.tb10.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tb10.Location = new System.Drawing.Point(1188, 299);
+            this.tb10.Name = "tb10";
+            this.tb10.Size = new System.Drawing.Size(64, 35);
+            this.tb10.TabIndex = 21;
             // 
-            // textBox13
+            // tb9
             // 
-            this.textBox13.Enabled = false;
-            this.textBox13.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox13.Location = new System.Drawing.Point(975, 300);
-            this.textBox13.Name = "textBox13";
-            this.textBox13.Size = new System.Drawing.Size(183, 35);
-            this.textBox13.TabIndex = 20;
+            this.tb9.Enabled = false;
+            this.tb9.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tb9.Location = new System.Drawing.Point(975, 300);
+            this.tb9.Name = "tb9";
+            this.tb9.Size = new System.Drawing.Size(183, 35);
+            this.tb9.TabIndex = 20;
             // 
-            // textBox14
+            // tb20
             // 
-            this.textBox14.Enabled = false;
-            this.textBox14.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox14.Location = new System.Drawing.Point(1188, 577);
-            this.textBox14.Name = "textBox14";
-            this.textBox14.Size = new System.Drawing.Size(64, 35);
-            this.textBox14.TabIndex = 31;
+            this.tb20.Enabled = false;
+            this.tb20.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tb20.Location = new System.Drawing.Point(1188, 577);
+            this.tb20.Name = "tb20";
+            this.tb20.Size = new System.Drawing.Size(64, 35);
+            this.tb20.TabIndex = 31;
             // 
-            // textBox15
+            // tb19
             // 
-            this.textBox15.Enabled = false;
-            this.textBox15.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox15.Location = new System.Drawing.Point(975, 578);
-            this.textBox15.Name = "textBox15";
-            this.textBox15.Size = new System.Drawing.Size(183, 35);
-            this.textBox15.TabIndex = 30;
+            this.tb19.Enabled = false;
+            this.tb19.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tb19.Location = new System.Drawing.Point(975, 578);
+            this.tb19.Name = "tb19";
+            this.tb19.Size = new System.Drawing.Size(183, 35);
+            this.tb19.TabIndex = 30;
             // 
-            // textBox16
+            // tb18
             // 
-            this.textBox16.Enabled = false;
-            this.textBox16.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox16.Location = new System.Drawing.Point(1188, 521);
-            this.textBox16.Name = "textBox16";
-            this.textBox16.Size = new System.Drawing.Size(64, 35);
-            this.textBox16.TabIndex = 29;
+            this.tb18.Enabled = false;
+            this.tb18.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tb18.Location = new System.Drawing.Point(1188, 521);
+            this.tb18.Name = "tb18";
+            this.tb18.Size = new System.Drawing.Size(64, 35);
+            this.tb18.TabIndex = 29;
             // 
-            // textBox17
+            // tb17
             // 
-            this.textBox17.Enabled = false;
-            this.textBox17.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox17.Location = new System.Drawing.Point(975, 522);
-            this.textBox17.Name = "textBox17";
-            this.textBox17.Size = new System.Drawing.Size(183, 35);
-            this.textBox17.TabIndex = 28;
+            this.tb17.Enabled = false;
+            this.tb17.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tb17.Location = new System.Drawing.Point(975, 522);
+            this.tb17.Name = "tb17";
+            this.tb17.Size = new System.Drawing.Size(183, 35);
+            this.tb17.TabIndex = 28;
             // 
-            // textBox18
+            // tb16
             // 
-            this.textBox18.Enabled = false;
-            this.textBox18.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox18.Location = new System.Drawing.Point(1188, 467);
-            this.textBox18.Name = "textBox18";
-            this.textBox18.Size = new System.Drawing.Size(64, 35);
-            this.textBox18.TabIndex = 27;
+            this.tb16.Enabled = false;
+            this.tb16.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tb16.Location = new System.Drawing.Point(1188, 467);
+            this.tb16.Name = "tb16";
+            this.tb16.Size = new System.Drawing.Size(64, 35);
+            this.tb16.TabIndex = 27;
             // 
-            // textBox19
+            // tb15
             // 
-            this.textBox19.Enabled = false;
-            this.textBox19.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox19.Location = new System.Drawing.Point(975, 468);
-            this.textBox19.Name = "textBox19";
-            this.textBox19.Size = new System.Drawing.Size(183, 35);
-            this.textBox19.TabIndex = 26;
+            this.tb15.Enabled = false;
+            this.tb15.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tb15.Location = new System.Drawing.Point(975, 468);
+            this.tb15.Name = "tb15";
+            this.tb15.Size = new System.Drawing.Size(183, 35);
+            this.tb15.TabIndex = 26;
             // 
-            // textBox20
+            // tb14
             // 
-            this.textBox20.Enabled = false;
-            this.textBox20.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox20.Location = new System.Drawing.Point(1188, 416);
-            this.textBox20.Name = "textBox20";
-            this.textBox20.Size = new System.Drawing.Size(64, 35);
-            this.textBox20.TabIndex = 25;
+            this.tb14.Enabled = false;
+            this.tb14.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tb14.Location = new System.Drawing.Point(1188, 416);
+            this.tb14.Name = "tb14";
+            this.tb14.Size = new System.Drawing.Size(64, 35);
+            this.tb14.TabIndex = 25;
             // 
-            // textBox21
+            // tb13
             // 
-            this.textBox21.Enabled = false;
-            this.textBox21.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox21.Location = new System.Drawing.Point(975, 417);
-            this.textBox21.Name = "textBox21";
-            this.textBox21.Size = new System.Drawing.Size(183, 35);
-            this.textBox21.TabIndex = 24;
+            this.tb13.Enabled = false;
+            this.tb13.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tb13.Location = new System.Drawing.Point(975, 417);
+            this.tb13.Name = "tb13";
+            this.tb13.Size = new System.Drawing.Size(183, 35);
+            this.tb13.TabIndex = 24;
             // 
-            // textBox22
+            // tb12
             // 
-            this.textBox22.Enabled = false;
-            this.textBox22.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox22.Location = new System.Drawing.Point(1188, 361);
-            this.textBox22.Name = "textBox22";
-            this.textBox22.Size = new System.Drawing.Size(64, 35);
-            this.textBox22.TabIndex = 23;
+            this.tb12.Enabled = false;
+            this.tb12.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tb12.Location = new System.Drawing.Point(1188, 361);
+            this.tb12.Name = "tb12";
+            this.tb12.Size = new System.Drawing.Size(64, 35);
+            this.tb12.TabIndex = 23;
             // 
-            // textBox23
+            // tb11
             // 
-            this.textBox23.Enabled = false;
-            this.textBox23.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox23.Location = new System.Drawing.Point(975, 362);
-            this.textBox23.Name = "textBox23";
-            this.textBox23.Size = new System.Drawing.Size(183, 35);
-            this.textBox23.TabIndex = 22;
+            this.tb11.Enabled = false;
+            this.tb11.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tb11.Location = new System.Drawing.Point(975, 362);
+            this.tb11.Name = "tb11";
+            this.tb11.Size = new System.Drawing.Size(183, 35);
+            this.tb11.TabIndex = 22;
             // 
             // label1
             // 
@@ -492,7 +494,7 @@
             this.lbHintAnswer.AutoSize = true;
             this.lbHintAnswer.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbHintAnswer.ForeColor = System.Drawing.Color.Yellow;
-            this.lbHintAnswer.Location = new System.Drawing.Point(346, 54);
+            this.lbHintAnswer.Location = new System.Drawing.Point(349, 17);
             this.lbHintAnswer.Name = "lbHintAnswer";
             this.lbHintAnswer.Size = new System.Drawing.Size(113, 40);
             this.lbHintAnswer.TabIndex = 34;
@@ -504,11 +506,30 @@
             this.lbRoom.AutoSize = true;
             this.lbRoom.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbRoom.ForeColor = System.Drawing.Color.Yellow;
-            this.lbRoom.Location = new System.Drawing.Point(66, 26);
+            this.lbRoom.Location = new System.Drawing.Point(44, 17);
             this.lbRoom.Name = "lbRoom";
             this.lbRoom.Size = new System.Drawing.Size(113, 40);
             this.lbRoom.TabIndex = 35;
             this.lbRoom.Text = "Room";
+            // 
+            // btnStart
+            // 
+            this.btnStart.BackColor = System.Drawing.Color.Lime;
+            this.btnStart.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnStart.Location = new System.Drawing.Point(51, 76);
+            this.btnStart.Name = "btnStart";
+            this.btnStart.Size = new System.Drawing.Size(134, 50);
+            this.btnStart.TabIndex = 11;
+            this.btnStart.Text = "Start Game";
+            this.btnStart.UseVisualStyleBackColor = false;
+            this.btnStart.Click += new System.EventHandler(this.btnStart_Click);
+            // 
+            // pgssBarCoolDown
+            // 
+            this.pgssBarCoolDown.Location = new System.Drawing.Point(247, 485);
+            this.pgssBarCoolDown.Name = "pgssBarCoolDown";
+            this.pgssBarCoolDown.Size = new System.Drawing.Size(714, 23);
+            this.pgssBarCoolDown.TabIndex = 36;
             // 
             // btn_color
             // 
@@ -625,55 +646,47 @@
             this.btn_pencil.UseVisualStyleBackColor = false;
             this.btn_pencil.Click += new System.EventHandler(this.btn_pencil_Click);
             // 
-            // btnStart
-            // 
-            this.btnStart.BackColor = System.Drawing.Color.Lime;
-            this.btnStart.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnStart.Location = new System.Drawing.Point(30, 555);
-            this.btnStart.Name = "btnStart";
-            this.btnStart.Size = new System.Drawing.Size(134, 50);
-            this.btnStart.TabIndex = 11;
-            this.btnStart.Text = "Start Game";
-            this.btnStart.UseVisualStyleBackColor = false;
-            this.btnStart.Click += new System.EventHandler(this.btnStart_Click);
-            // 
             // FrmPlay
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
-            this.ClientSize = new System.Drawing.Size(1288, 729);
+            this.ClientSize = new System.Drawing.Size(1288, 751);
+            this.Controls.Add(this.pgssBarCoolDown);
+            this.Controls.Add(this.btnStart);
             this.Controls.Add(this.lbRoom);
             this.Controls.Add(this.lbHintAnswer);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.textBox14);
-            this.Controls.Add(this.textBox15);
-            this.Controls.Add(this.textBox16);
-            this.Controls.Add(this.textBox17);
-            this.Controls.Add(this.textBox18);
-            this.Controls.Add(this.textBox19);
-            this.Controls.Add(this.textBox20);
-            this.Controls.Add(this.textBox21);
-            this.Controls.Add(this.textBox22);
-            this.Controls.Add(this.textBox23);
-            this.Controls.Add(this.textBox12);
-            this.Controls.Add(this.textBox13);
-            this.Controls.Add(this.textBox10);
-            this.Controls.Add(this.textBox11);
-            this.Controls.Add(this.textBox8);
-            this.Controls.Add(this.textBox9);
-            this.Controls.Add(this.textBox6);
-            this.Controls.Add(this.textBox7);
-            this.Controls.Add(this.textBox5);
-            this.Controls.Add(this.textBox4);
+            this.Controls.Add(this.tb20);
+            this.Controls.Add(this.tb19);
+            this.Controls.Add(this.tb18);
+            this.Controls.Add(this.tb17);
+            this.Controls.Add(this.tb16);
+            this.Controls.Add(this.tb15);
+            this.Controls.Add(this.tb14);
+            this.Controls.Add(this.tb13);
+            this.Controls.Add(this.tb12);
+            this.Controls.Add(this.tb11);
+            this.Controls.Add(this.tb10);
+            this.Controls.Add(this.tb9);
+            this.Controls.Add(this.tb8);
+            this.Controls.Add(this.tb7);
+            this.Controls.Add(this.tb6);
+            this.Controls.Add(this.tb5);
+            this.Controls.Add(this.tb4);
+            this.Controls.Add(this.tb3);
+            this.Controls.Add(this.tb2);
+            this.Controls.Add(this.tb1);
             this.Controls.Add(this.pictureBox2);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panelPaint);
             this.Name = "FrmPlay";
             this.Text = "Play";
-            this.Activated += new System.EventHandler(this.Play_Activated);
+            this.Activated += new System.EventHandler(this.FrmPlay_Activated);
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FrmPlay_FormClosing);
+            this.Load += new System.EventHandler(this.FrmPlay_Load);
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
             this.panel2.ResumeLayout(false);
@@ -706,36 +719,37 @@
         private RoundButton btn_fill;
         private RoundButton btn_Eraser;
         private RoundButton btn_pencil;
-        private System.Windows.Forms.TextBox textBox4;
-        private System.Windows.Forms.TextBox textBox5;
-        private System.Windows.Forms.TextBox textBox6;
-        private System.Windows.Forms.TextBox textBox7;
-        private System.Windows.Forms.TextBox textBox8;
-        private System.Windows.Forms.TextBox textBox9;
-        private System.Windows.Forms.TextBox textBox10;
-        private System.Windows.Forms.TextBox textBox11;
-        private System.Windows.Forms.TextBox textBox12;
-        private System.Windows.Forms.TextBox textBox13;
-        private System.Windows.Forms.TextBox textBox14;
-        private System.Windows.Forms.TextBox textBox15;
-        private System.Windows.Forms.TextBox textBox16;
-        private System.Windows.Forms.TextBox textBox17;
-        private System.Windows.Forms.TextBox textBox18;
-        private System.Windows.Forms.TextBox textBox19;
-        private System.Windows.Forms.TextBox textBox20;
-        private System.Windows.Forms.TextBox textBox21;
-        private System.Windows.Forms.TextBox textBox22;
-        private System.Windows.Forms.TextBox textBox23;
+        private System.Windows.Forms.TextBox tb1;
+        private System.Windows.Forms.TextBox tb2;
+        private System.Windows.Forms.TextBox tb4;
+        private System.Windows.Forms.TextBox tb3;
+        private System.Windows.Forms.TextBox tb6;
+        private System.Windows.Forms.TextBox tb5;
+        private System.Windows.Forms.TextBox tb8;
+        private System.Windows.Forms.TextBox tb7;
+        private System.Windows.Forms.TextBox tb10;
+        private System.Windows.Forms.TextBox tb9;
+        private System.Windows.Forms.TextBox tb20;
+        private System.Windows.Forms.TextBox tb19;
+        private System.Windows.Forms.TextBox tb18;
+        private System.Windows.Forms.TextBox tb17;
+        private System.Windows.Forms.TextBox tb16;
+        private System.Windows.Forms.TextBox tb15;
+        private System.Windows.Forms.TextBox tb14;
+        private System.Windows.Forms.TextBox tb13;
+        private System.Windows.Forms.TextBox tb12;
+        private System.Windows.Forms.TextBox tb11;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.ComboBox cmbWidth;
         private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.Label lbHintAnswer;
-        private System.Windows.Forms.Button btbTopic2;
+        private System.Windows.Forms.Button btnTopic2;
         private System.Windows.Forms.Button btnTopic1;
         private System.Windows.Forms.Label lbRoom;
         private System.Windows.Forms.Button btnClear;
         private System.Windows.Forms.Button pic_color;
         private System.Windows.Forms.Button btnStart;
+        private System.Windows.Forms.ProgressBar pgssBarCoolDown;
     }
 }

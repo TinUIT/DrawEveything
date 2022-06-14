@@ -10,7 +10,9 @@ namespace DrawEveything
     internal class Player
     {
         private static string Username, Password;
-        private static int Room;
+        public string Uname;
+        private static int Room = 0;
+        public int Marked = 0;
 
         public Player() { }
         
