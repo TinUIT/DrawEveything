@@ -20,8 +20,7 @@ namespace DrawEveything
         //Hàm kiểm tra xem thông tin client đăng nhập đúng hay không
         public bool CheckLogin(string UserName, string Password)
         {
-            SqlConnection connect = new SqlConnection(@"Data Source=DESKTOP-QPN0QKO\SQLEXPRESS;Initial Catalog=master;Integrated Security=True");
-
+            SqlConnection connect = new SqlConnection(@"Data Source=WINDOWS-10;Initial Catalog=ACCOUNT;Integrated Security=True");
 
             string name = UserName;  //login.getUsername();
             string pass = Password; //login.getPassword();
@@ -30,7 +29,7 @@ namespace DrawEveything
             connect.Open();
             SqlCommand cmd = new SqlCommand(sql, connect);
             SqlDataReader reader = cmd.ExecuteReader();
-            if (reader.Read() == true)
+            if (reader.Read())
             {
                 return true;
 
@@ -46,7 +45,7 @@ namespace DrawEveything
             //Nếu đăng ký thành công thì sẽ return true
             try
             {
-                SqlConnection connect = new SqlConnection(@"Data Source=DESKTOP-QPN0QKO\SQLEXPRESS;Initial Catalog=master;Integrated Security=True");
+                SqlConnection connect = new SqlConnection(@"Data Source=WINDOWS-10;Initial Catalog=ACCOUNT;Integrated Security=True");
 
 
                 string name = UserName;
