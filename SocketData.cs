@@ -14,24 +14,27 @@ namespace DrawEveything
         public string Username, Password;
         public string Status = "";
 
-        public string chat;
-
-        public int index;
+        public string chat, topic1, topic2, chosenTopic;
+        
+        public bool start = false;
+        public int Room = 0;
+        public int NumberOfRoom1 = 0;
+        public int NumberOfRoom2 = 0;
 
         public byte[] image;
-
-        public SocketData() { }
+        public string[] players = new string[10];
+        
+        public SocketData() {
+            for (int i = 0; i < 10; i++)
+            {
+                players[i] = "";
+            }
+        }
 
         public SocketData(string username, string password)
         {
             Username = username;
             Password = password;
-        }
-
-        public SocketData(string c, float Width, int cX, int cY, int sX, int sY, int Index, string status) 
-        {
-            this.index = Index;
-            this.Status = status;
         }
     }
 }

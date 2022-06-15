@@ -10,6 +10,9 @@ namespace DrawEveything
     internal class Player
     {
         private static string Username, Password;
+        public string Uname;
+        private static int Room = 0;
+        public int Marked = 0;
 
         public Player() { }
         
@@ -19,14 +22,19 @@ namespace DrawEveything
             Password = password;
         }
 
+        public Player (int room)
+        {
+            Room = room;
+        }
+
         public string getUsername ()
         {
             return Username;
         }
 
-        public string getPassword()
+        public int getRoom()
         {
-            return Password;   
+            return Room;   
         }
     }
 }

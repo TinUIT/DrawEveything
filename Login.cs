@@ -57,7 +57,7 @@ namespace DrawEveything
                     Player player = new Player(tbUserName.Text, login.Password);
                     this.Hide();
                     socket.Close();
-                    Play room = new Play();
+                    Room room = new Room();
                     room.ShowDialog();
                     this.Close();
                 }
