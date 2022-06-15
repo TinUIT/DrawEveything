@@ -272,6 +272,10 @@ namespace DrawEveything
             choose.chosenTopic = btnTopic1.Text;
             choose.Status = "topic";
             socket.Send(choose);
+            btnTopic1.Visible = false;
+            btnTopic1.Enabled = false;
+            btnTopic2.Visible = false;
+            btnTopic2.Enabled = false;
         }
 
         private void btbTopic2_Click(object sender, EventArgs e)

@@ -48,7 +48,6 @@ namespace DrawEveything
             {
                 SqlConnection connect = new SqlConnection(@"Data Source=DESKTOP-QPN0QKO\SQLEXPRESS;Initial Catalog=master;Integrated Security=True");
 
-
                 string name = UserName;
                 string pass = Password;
 
