@@ -48,7 +48,8 @@ namespace DrawEveything
 
         List<Player> room1;
         List<Player> room2;
-
+        int Answered1 = 0;
+        int Answered2 = 0;
         public void CreateServer()
         {
             clientList1 = new List<Socket>();
@@ -163,28 +164,31 @@ namespace DrawEveything
                             {
                                 if (receive.chat == answer)
                                 {
+                                    Answered1++;
                                     for (int i = 0; i < clientList1.Count; i++)
                                     {
                                         if (client == clientList1[i])
                                         {
                                             room1[i].setMark(15);
+                                            room1[Numrd].setMark(5);
                                             if(room1[i].getMark() >= 200)
                                             {
+                                                respone.Status = "end";
 
                                             }
-
+                                            if (Answered1 == room1.Count - 1)
+                                            {
+                                                respone.Status = "stop";
+                                                respone.done = true;
+                                                clientList1[Numrd].Send(SerializeData(respone));
+                                                start(receive, respone, Numrd);
+                                            }
                                             int y = 0;
                                             foreach (Player p in room1)
                                             {
                                                 receive.players[y] = p.Uname;
                                                 receive.marks[y] = room1[y].getMark();
                                                 y++;
-                                            }
-
-                                            if(y == room1.Count - 1)
-                                            {
-                                                receive.done = true;
-                                                start(receive, respone);
                                             }
 
                                             break;
@@ -212,11 +216,24 @@ namespace DrawEveything
                             {
                                 if (receive.chat == answer)
                                 {
+                                    Answered2++;
                                     for (int i = 0; i < clientList2.Count; i++)
                                     {
                                         if (client == clientList2[i])
                                         {
                                             room2[i].setMark(15);
+                                            room1[Numrd].setMark(5);
+                                            if (room2[i].getMark() >= 200)
+                                            {
+
+                                            }
+                                            if (Answered2 == room2.Count - 1)
+                                            {
+                                                respone.Status = "stop";
+                                                respone.done = true;
+                                                clientList2[Numrd].Send(SerializeData(respone));
+                                                start(receive, respone, Numrd);
+                                            }
 
                                             int y = 0;
                                             foreach (Player p in room2)
@@ -224,12 +241,6 @@ namespace DrawEveything
                                                 receive.players[y] = p.Uname;
                                                 receive.marks[y] = room1[y].getMark();
                                                 y++;
-                                            }
-
-                                            if (y == room1.Count - 1)
-                                            {
-                                                receive.done = true;
-                                                start(receive, respone);
                                             }
 
                                             break;
@@ -261,7 +272,7 @@ namespace DrawEveything
                             client.Send(SerializeData(respone));
                             break;
                         case "start":
-                            start(receive,respone);
+                            Numrd = start(receive,respone,Numrd);
                             break;
                         case "topic":
                             answer = receive.chosenTopic;
@@ -307,7 +318,10 @@ namespace DrawEveything
                                         i++;
                                     }
 
-                                    client.Send(SerializeData(respone));
+                                    foreach (Socket socket in clientList2)
+                                    {
+                                        socket.Send(SerializeData(respone));
+                                    }
                                 }
                             }
                             break;
@@ -316,26 +330,30 @@ namespace DrawEveything
                 }
                 catch (Exception ex)
                 {
-                    //MessageBox.Show(ex.ToString());
+                    SocketData respone = new SocketData();
                     if (room == 1)
                     {
-                        clientList1.Remove(client);
+                        clientList1.Remove(client);    
                         room1.Remove(player);
+                        if (room1.Count == 0)
+                            Answered1 = 0;
                     }
                     else if (room == 2)
                     {
                         clientList2.Remove(client);
                         room2.Remove(player);
+                        if (room1.Count == 0)
+                            Answered1 = 0;
                     }
                 }
             }
         }
 
-        public void start(SocketData receive, SocketData respone)
+        public int start(SocketData receive, SocketData respone, int num)
         {
             Play play = new Play();
             Random rd = new Random();
-            int Numrd = 0;
+            int Numrd = num;
             int Numrd1 = rd.Next(0, play.topic.Length);
             int Numrd2;
             do
@@ -347,11 +365,15 @@ namespace DrawEveything
             respone.Status = "start";
             if (clientList1.Count > 1)
             {
-                Numrd = rd.Next(0, clientList1.Count - 1);
+                Numrd++;
+                if(Numrd >= clientList1.Count)
+                    Numrd %= clientList1.Count;
             }
             if (clientList2.Count > 1)
             {
-                Numrd = rd.Next(0, clientList2.Count - 1);
+                Numrd++;
+                if (Numrd >= clientList2.Count)
+                    Numrd %= clientList2.Count;
             }
             if (receive.Room == 1)
             {
@@ -387,6 +409,7 @@ namespace DrawEveything
                     }
                 }
             }
+            return Numrd;
         }
         #endregion
 
@@ -395,6 +418,7 @@ namespace DrawEveything
         public int PORT = 9999;
         public const int BUFFER = 1024*5000;
         string answer = "";
+        int Numrd = 0;
         //public bool isRecieve = false;
 
         public bool Send(object data)
