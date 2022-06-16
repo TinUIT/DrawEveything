@@ -14,7 +14,7 @@ namespace DrawEveything
     {
         #region Client
         Socket client = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
-
+        List<string> List_user = new List<string>();
         public void setIP(string IP)
         {
             sIP = IP;
@@ -110,6 +110,12 @@ namespace DrawEveything
                             if (checklogin.CheckLogin(receive.Username, receive.Password))
                             {
                                 respone.Status = "Success";
+                                if (!List_user.Contains(receive.Username))
+                                {
+                                    List_user.Add(receive.Username);
+                                }
+                                else 
+                                    respone.Status = "Exist";
                                 client.Send(SerializeData(respone));
                             }
                             else

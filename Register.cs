@@ -20,6 +20,7 @@ namespace DrawEveything
             CheckForIllegalCrossThreadCalls = false;
         }
         SocketManager socket = new SocketManager();
+        _Regex reg = new _Regex();
         private void btExit_Click(object sender, EventArgs e)
         {
             this.Hide();
@@ -68,6 +69,14 @@ namespace DrawEveything
         {
             if(tbPassword.Text != "" && tbUserName.Text != "" && tbRetypePassword.Text != "")
             {
+                if (!reg.Check_Format_User(tbUserName.Text))
+                {
+                    MessageBox.Show("Username sai định dạng");
+                }
+                if (!reg.Check_Format_Password(tbPassword.Text) || !reg.Check_Format_Password(tbRetypePassword.Text))
+                {
+                    MessageBox.Show("Password sai định dạng");
+                }
                 if (tbPassword.Text == tbRetypePassword.Text)
                 {
                     socket.ConnectServer();
