@@ -48,6 +48,17 @@ namespace DrawEveything
         private void timer1_Tick(object sender, EventArgs e)
         {
             pgssBarCoolDown.PerformStep();
+
+            if (start)
+            {
+                btnTopic1.Visible = true;
+                btnTopic1.Enabled = true;
+                btnTopic1.Text = receive.topic1;
+
+                btnTopic2.Visible = true;
+                btnTopic2.Enabled = true;
+                btnTopic2.Text = receive.topic2;
+            }
         }
 
         private void Receive()
@@ -79,13 +90,13 @@ namespace DrawEveything
                             }
                         }
                         AddAnswer(receive.Username + ": " + receive.chat);
-                        if(receive.done)
+                        if(receive.chat == "ĐÃ TRẢ LỜI ĐÚNG" && isAnswer)
                         {
-                            pgssBarCoolDown.Value = 0;
-                            timer.Stop();
+                            btnAnswer.Enabled = false;
                         }
                         break;
                     case "start":
+                        isAnswer = false;
                         btnStart.Enabled = false;
                         if (receive.start)
                         {
@@ -94,11 +105,28 @@ namespace DrawEveything
                             btnAnswer.Enabled = false;
                             tbAnswer.Enabled = false;
                             timer.Start();
-                            timer.Tick += new EventHandler(timer1_Tick);
+                            if (itimer == 0)
+                            {
+                                timer.Tick += new EventHandler(timer1_Tick);
+                                itimer = 1;
+                            }
                             pgssBarCoolDown.Value = 0;
                         }
                         break;
-                   default:                       
+                    case "stop":
+                        if (receive.done)
+                        {
+                            pgssBarCoolDown.Value = 0;
+                            timer.Stop();
+                            panelPaint.Enabled = false;
+                            btnAnswer.Enabled = true;
+                            tbAnswer.Enabled = true;
+                            g.Clear(Color.White);
+                            pic.Image = bm;
+                            Send();
+                        }
+                        break;
+                    default:                       
                         for(int i = 0; i < textBoxesName.Count; i++)
                         {
                             string s = receive.players[i];
@@ -121,6 +149,8 @@ namespace DrawEveything
         List<TextBox> textBoxesName = new List<TextBox>();
         List<TextBox> textBoxesMarked = new List<TextBox>();
         bool start = false;
+        int itimer = 0;
+        bool isAnswer = false;
         #region paint
         Bitmap bm;
         Graphics g;
@@ -134,8 +164,7 @@ namespace DrawEveything
         public float width;
 
         ColorDialog dlg = new ColorDialog();
-        Color new_color = Color.Black;       
-
+        Color new_color = Color.Black;
  
         private void Send()
         {
@@ -396,7 +425,7 @@ namespace DrawEveything
 
         private void FrmPlay_FormClosing(object sender, FormClosingEventArgs e)
         {
-            SocketData exit = new SocketData();
+
         }
 
         private void FrmPlay_MouseEnter(object sender, EventArgs e)
@@ -463,6 +492,7 @@ namespace DrawEveything
                 socketData.chat = tbAnswer.Text;
                 socketData.Username = player.getUsername();
                 socket.Send(socketData);
+                isAnswer = true;
             }
         }
 
