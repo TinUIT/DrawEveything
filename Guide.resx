@@ -120,7 +120,7 @@
   <data name="textBox1.Text" xml:space="preserve">
     <value>- Trò chơi bao gồm n phòng. Mỗi phòng có tối đa 10 player. Mỗi player sẽ lần lượt vẽ trên bảng trắng dựa theo nội dung được cung cấp. Mỗi lượt vẽ được cung cấp 2 nội dung, lựa chọn 1 trong 2 để vẽ.
 - Có 2 khung chat: Khung bên trái để gửi đáp án lên và khung bên trái để thảo luận giữa các player. 
-- Player đoán đúng sẽ nhận được số lượng điểm dựa trên thời gian trả lời nhanh hay chậm. Player không trả lời khi hết thời gian sẽ bị trừ điểm. 
+- Player đoán đúng sẽ nhận được số lượng điểm dựa trên thời gian trả lời nhanh hay chậm. Player không trả lời khi hết thời gian sẽ không có điểm. 
 - Có thể tố cáo player vẽ không đúng theo nội dung cho trước hoặc bỏ phiếu để đá player khác</value>
   </data>
 </root>

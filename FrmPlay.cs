@@ -43,8 +43,6 @@ namespace DrawEveything
             Thread thread = new Thread(Receive);
             thread.IsBackground=true;
             thread.Start();
-
-
         }
 
         private void timer1_Tick(object sender, EventArgs e)
@@ -71,31 +69,46 @@ namespace DrawEveything
                        AddMessage(receive.Username + ": " + receive.chat);
                        break;
                     case "answer":
-                       AddAnswer(receive.Username + ": " + receive.chat);
+                        for (int i = 0; i < textBoxesName.Count; i++)
+                        {
+                            string s = receive.players[i];
+                            if (!String.IsNullOrEmpty(s))
+                            {
+                                textBoxesName[i].Text = receive.players[i];
+                                textBoxesMarked[i].Text = receive.marks[i].ToString();
+                            }
+                        }
+                        AddAnswer(receive.Username + ": " + receive.chat);
                         break;
                     case "start":
+                        btnStart.Enabled = false;
                         if (receive.start)
                         {
                             start = true;
                             panelPaint.Enabled = true;
+                            btnAnswer.Enabled = false;
+                            tbAnswer.Enabled = false;
                             timer.Start();
                             timer.Tick += new EventHandler(timer1_Tick);
                             pgssBarCoolDown.Value = 0;
                         }
                         break;
-                   default:
-                        int i = 0;
-                        foreach (TextBox tb in textBoxesName)
+                   default:                       
+                        for(int i = 0; i < textBoxesName.Count; i++)
                         {
                             string s = receive.players[i];
                             if (!String.IsNullOrEmpty(s))
-                                tb.Text = receive.players[i];
-                            i++;
+                            {
+                                textBoxesName[i].Text = receive.players[i];
+                                textBoxesMarked[i].Text = receive.marks[i].ToString();
+                            }
                         }
                         break;
                }            
             }
         }
+
+
         SocketManager socket = new SocketManager();
         SocketData receive;
         System.Windows.Forms.Timer timer = new System.Windows.Forms.Timer();
@@ -272,10 +285,13 @@ namespace DrawEveything
             choose.chosenTopic = btnTopic1.Text;
             choose.Status = "topic";
             socket.Send(choose);
+            start = false;
+            lbAnswer.Visible = true;
+            lbAnswer.Text = btnTopic1.Text;
             btnTopic1.Visible = false;
             btnTopic1.Enabled = false;
             btnTopic2.Visible = false;
-            btnTopic2.Enabled = false;
+            btnTopic2.Enabled = false; 
         }
 
         private void btbTopic2_Click(object sender, EventArgs e)
@@ -284,6 +300,13 @@ namespace DrawEveything
             choose.chosenTopic = btnTopic2.Text;
             choose.Status = "topic";
             socket.Send(choose);
+            start = false;
+            lbAnswer.Visible = true;
+            lbAnswer.Text = btnTopic1.Text;
+            btnTopic1.Visible = false;
+            btnTopic1.Enabled = false;
+            btnTopic2.Visible = false;
+            btnTopic2.Enabled = false;
         }
        
         private void cmbWidth_SelectedIndexChanged(object sender, EventArgs e)
@@ -315,7 +338,6 @@ namespace DrawEveything
         private void btnAnswer_Click(object sender, EventArgs e)
         {
             SendAnswer();
-            AddAnswer(player.getUsername() + ":" + tbAnswer.Text);
         }
 
         static Point set_point(PictureBox pb, Point pt)
@@ -337,10 +359,10 @@ namespace DrawEveything
 
         private void btnStart_Click(object sender, EventArgs e)
         {
-            SocketData start = new SocketData();
-            start.Status = "start";
-            start.Room = player.getRoom();
-            socket.Send(start);
+            SocketData sstart = new SocketData();
+            sstart.Status = "start";
+            sstart.Room = player.getRoom();
+            socket.Send(sstart);
         }
 
         private void FrmPlay_Load(object sender, EventArgs e)
@@ -367,9 +389,14 @@ namespace DrawEveything
             textBoxesMarked.Add(tb20);
         }
 
-        private void FrmPlay_Activated(object sender, EventArgs e)
+        private void FrmPlay_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if (start)
+            SocketData exit = new SocketData();
+        }
+
+        private void FrmPlay_MouseEnter(object sender, EventArgs e)
+        {
+            if(start)
             {
                 btnTopic1.Visible = true;
                 btnTopic1.Enabled = true;
@@ -381,9 +408,18 @@ namespace DrawEveything
             }
         }
 
-        private void FrmPlay_FormClosing(object sender, FormClosingEventArgs e)
+        private void FrmPlay_MouseLeave(object sender, EventArgs e)
         {
-            SocketData exit = new SocketData();
+            if (start)
+            {
+                btnTopic1.Visible = true;
+                btnTopic1.Enabled = true;
+                btnTopic1.Text = receive.topic1;
+
+                btnTopic2.Visible = true;
+                btnTopic2.Enabled = true;
+                btnTopic2.Text = receive.topic2;
+            }
         }
 
         public void Fill(Bitmap bm, int x, int y, Color new_clr)
@@ -431,6 +467,7 @@ namespace DrawEveything
             if (tbAnswer.Text != string.Empty)
             {
                 SocketData socketData = new SocketData();
+                socketData.Room = player.getRoom();
                 socketData.Status = "answer";
                 socketData.chat = tbAnswer.Text;
                 socketData.Username = player.getUsername();

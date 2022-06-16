@@ -45,6 +45,13 @@
             this.btnClear = new System.Windows.Forms.Button();
             this.cmbWidth = new System.Windows.Forms.ComboBox();
             this.btnSave = new System.Windows.Forms.Button();
+            this.btn_color = new DrawEveything.RoundButton();
+            this.btnRectangle = new DrawEveything.RoundButton();
+            this.btn_line = new DrawEveything.RoundButton();
+            this.btn_elipse = new DrawEveything.RoundButton();
+            this.btn_fill = new DrawEveything.RoundButton();
+            this.btn_Eraser = new DrawEveything.RoundButton();
+            this.btn_pencil = new DrawEveything.RoundButton();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.tb1 = new System.Windows.Forms.TextBox();
             this.tb2 = new System.Windows.Forms.TextBox();
@@ -68,17 +75,10 @@
             this.tb11 = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.lbHintAnswer = new System.Windows.Forms.Label();
+            this.lbAnswer = new System.Windows.Forms.Label();
             this.lbRoom = new System.Windows.Forms.Label();
             this.btnStart = new System.Windows.Forms.Button();
             this.pgssBarCoolDown = new System.Windows.Forms.ProgressBar();
-            this.btn_color = new DrawEveything.RoundButton();
-            this.btnRectangle = new DrawEveything.RoundButton();
-            this.btn_line = new DrawEveything.RoundButton();
-            this.btn_elipse = new DrawEveything.RoundButton();
-            this.btn_fill = new DrawEveything.RoundButton();
-            this.btn_Eraser = new DrawEveything.RoundButton();
-            this.btn_pencil = new DrawEveything.RoundButton();
             this.panel3.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pic)).BeginInit();
@@ -178,9 +178,10 @@
             // 
             this.btnTopic2.BackColor = System.Drawing.Color.White;
             this.btnTopic2.Enabled = false;
-            this.btnTopic2.Location = new System.Drawing.Point(437, 231);
+            this.btnTopic2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnTopic2.Location = new System.Drawing.Point(431, 231);
             this.btnTopic2.Name = "btnTopic2";
-            this.btnTopic2.Size = new System.Drawing.Size(145, 50);
+            this.btnTopic2.Size = new System.Drawing.Size(175, 50);
             this.btnTopic2.TabIndex = 3;
             this.btnTopic2.Text = "button2";
             this.btnTopic2.UseVisualStyleBackColor = false;
@@ -191,9 +192,10 @@
             // 
             this.btnTopic1.BackColor = System.Drawing.Color.White;
             this.btnTopic1.Enabled = false;
-            this.btnTopic1.Location = new System.Drawing.Point(121, 231);
+            this.btnTopic1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnTopic1.Location = new System.Drawing.Point(109, 231);
             this.btnTopic1.Name = "btnTopic1";
-            this.btnTopic1.Size = new System.Drawing.Size(145, 50);
+            this.btnTopic1.Size = new System.Drawing.Size(177, 50);
             this.btnTopic1.TabIndex = 2;
             this.btnTopic1.Text = "button1";
             this.btnTopic1.UseVisualStyleBackColor = false;
@@ -276,6 +278,121 @@
             this.btnSave.Text = "Save";
             this.btnSave.UseVisualStyleBackColor = false;
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
+            // 
+            // btn_color
+            // 
+            this.btn_color.BackColor = System.Drawing.Color.Blue;
+            this.btn_color.FlatAppearance.BorderColor = System.Drawing.Color.Navy;
+            this.btn_color.FlatAppearance.BorderSize = 0;
+            this.btn_color.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_color.ForeColor = System.Drawing.Color.White;
+            this.btn_color.Image = global::DrawEveything.Properties.Resources.color;
+            this.btn_color.Location = new System.Drawing.Point(16, 292);
+            this.btn_color.Name = "btn_color";
+            this.btn_color.Size = new System.Drawing.Size(80, 80);
+            this.btn_color.TabIndex = 6;
+            this.btn_color.Text = "Color";
+            this.btn_color.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btn_color.UseVisualStyleBackColor = false;
+            this.btn_color.Click += new System.EventHandler(this.btn_color_Click);
+            // 
+            // btnRectangle
+            // 
+            this.btnRectangle.BackColor = System.Drawing.Color.Blue;
+            this.btnRectangle.FlatAppearance.BorderSize = 0;
+            this.btnRectangle.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnRectangle.ForeColor = System.Drawing.Color.White;
+            this.btnRectangle.Image = global::DrawEveything.Properties.Resources.rectangle;
+            this.btnRectangle.Location = new System.Drawing.Point(108, 206);
+            this.btnRectangle.Name = "btnRectangle";
+            this.btnRectangle.Size = new System.Drawing.Size(80, 80);
+            this.btnRectangle.TabIndex = 5;
+            this.btnRectangle.Text = "Square";
+            this.btnRectangle.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnRectangle.UseVisualStyleBackColor = false;
+            this.btnRectangle.Click += new System.EventHandler(this.btnRectangle_Click);
+            // 
+            // btn_line
+            // 
+            this.btn_line.BackColor = System.Drawing.Color.Blue;
+            this.btn_line.FlatAppearance.BorderSize = 0;
+            this.btn_line.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_line.ForeColor = System.Drawing.Color.White;
+            this.btn_line.Image = global::DrawEveything.Properties.Resources.line;
+            this.btn_line.Location = new System.Drawing.Point(16, 206);
+            this.btn_line.Name = "btn_line";
+            this.btn_line.Size = new System.Drawing.Size(80, 80);
+            this.btn_line.TabIndex = 4;
+            this.btn_line.Text = "Line";
+            this.btn_line.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btn_line.UseVisualStyleBackColor = false;
+            this.btn_line.Click += new System.EventHandler(this.btn_line_Click);
+            // 
+            // btn_elipse
+            // 
+            this.btn_elipse.BackColor = System.Drawing.Color.Blue;
+            this.btn_elipse.FlatAppearance.BorderSize = 0;
+            this.btn_elipse.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_elipse.ForeColor = System.Drawing.Color.White;
+            this.btn_elipse.Image = global::DrawEveything.Properties.Resources.circle;
+            this.btn_elipse.Location = new System.Drawing.Point(108, 120);
+            this.btn_elipse.Name = "btn_elipse";
+            this.btn_elipse.Size = new System.Drawing.Size(80, 80);
+            this.btn_elipse.TabIndex = 3;
+            this.btn_elipse.Text = "Elipse";
+            this.btn_elipse.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btn_elipse.UseVisualStyleBackColor = false;
+            this.btn_elipse.Click += new System.EventHandler(this.btn_elipse_Click);
+            // 
+            // btn_fill
+            // 
+            this.btn_fill.BackColor = System.Drawing.Color.Blue;
+            this.btn_fill.FlatAppearance.BorderSize = 0;
+            this.btn_fill.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_fill.ForeColor = System.Drawing.Color.White;
+            this.btn_fill.Image = global::DrawEveything.Properties.Resources.bucket;
+            this.btn_fill.Location = new System.Drawing.Point(16, 120);
+            this.btn_fill.Name = "btn_fill";
+            this.btn_fill.Size = new System.Drawing.Size(80, 80);
+            this.btn_fill.TabIndex = 2;
+            this.btn_fill.Text = "Fill";
+            this.btn_fill.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btn_fill.UseVisualStyleBackColor = false;
+            this.btn_fill.Click += new System.EventHandler(this.btn_fill_Click);
+            // 
+            // btn_Eraser
+            // 
+            this.btn_Eraser.BackColor = System.Drawing.Color.Blue;
+            this.btn_Eraser.FlatAppearance.BorderSize = 0;
+            this.btn_Eraser.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_Eraser.ForeColor = System.Drawing.Color.White;
+            this.btn_Eraser.Image = global::DrawEveything.Properties.Resources.eraser;
+            this.btn_Eraser.Location = new System.Drawing.Point(108, 34);
+            this.btn_Eraser.Name = "btn_Eraser";
+            this.btn_Eraser.Size = new System.Drawing.Size(80, 80);
+            this.btn_Eraser.TabIndex = 1;
+            this.btn_Eraser.Text = "Eraser";
+            this.btn_Eraser.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btn_Eraser.UseVisualStyleBackColor = false;
+            this.btn_Eraser.Click += new System.EventHandler(this.btn_Eraser_Click);
+            // 
+            // btn_pencil
+            // 
+            this.btn_pencil.BackColor = System.Drawing.Color.Blue;
+            this.btn_pencil.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.btn_pencil.FlatAppearance.BorderSize = 0;
+            this.btn_pencil.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_pencil.ForeColor = System.Drawing.Color.White;
+            this.btn_pencil.Image = global::DrawEveything.Properties.Resources.pencil;
+            this.btn_pencil.ImageAlign = System.Drawing.ContentAlignment.BottomLeft;
+            this.btn_pencil.Location = new System.Drawing.Point(16, 34);
+            this.btn_pencil.Name = "btn_pencil";
+            this.btn_pencil.Size = new System.Drawing.Size(80, 80);
+            this.btn_pencil.TabIndex = 0;
+            this.btn_pencil.Text = "Pencil";
+            this.btn_pencil.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btn_pencil.UseVisualStyleBackColor = false;
+            this.btn_pencil.Click += new System.EventHandler(this.btn_pencil_Click);
             // 
             // pictureBox2
             // 
@@ -489,17 +606,17 @@
             this.label2.TabIndex = 33;
             this.label2.Text = "Điểm";
             // 
-            // lbHintAnswer
+            // lbAnswer
             // 
-            this.lbHintAnswer.AutoSize = true;
-            this.lbHintAnswer.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbHintAnswer.ForeColor = System.Drawing.Color.Yellow;
-            this.lbHintAnswer.Location = new System.Drawing.Point(349, 17);
-            this.lbHintAnswer.Name = "lbHintAnswer";
-            this.lbHintAnswer.Size = new System.Drawing.Size(113, 40);
-            this.lbHintAnswer.TabIndex = 34;
-            this.lbHintAnswer.Text = "label3";
-            this.lbHintAnswer.Visible = false;
+            this.lbAnswer.AutoSize = true;
+            this.lbAnswer.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbAnswer.ForeColor = System.Drawing.Color.Yellow;
+            this.lbAnswer.Location = new System.Drawing.Point(349, 17);
+            this.lbAnswer.Name = "lbAnswer";
+            this.lbAnswer.Size = new System.Drawing.Size(113, 40);
+            this.lbAnswer.TabIndex = 34;
+            this.lbAnswer.Text = "label3";
+            this.lbAnswer.Visible = false;
             // 
             // lbRoom
             // 
@@ -531,121 +648,6 @@
             this.pgssBarCoolDown.Size = new System.Drawing.Size(714, 23);
             this.pgssBarCoolDown.TabIndex = 36;
             // 
-            // btn_color
-            // 
-            this.btn_color.BackColor = System.Drawing.Color.Blue;
-            this.btn_color.FlatAppearance.BorderColor = System.Drawing.Color.Navy;
-            this.btn_color.FlatAppearance.BorderSize = 0;
-            this.btn_color.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_color.ForeColor = System.Drawing.Color.White;
-            this.btn_color.Image = global::DrawEveything.Properties.Resources.color;
-            this.btn_color.Location = new System.Drawing.Point(16, 292);
-            this.btn_color.Name = "btn_color";
-            this.btn_color.Size = new System.Drawing.Size(80, 80);
-            this.btn_color.TabIndex = 6;
-            this.btn_color.Text = "Color";
-            this.btn_color.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.btn_color.UseVisualStyleBackColor = false;
-            this.btn_color.Click += new System.EventHandler(this.btn_color_Click);
-            // 
-            // btnRectangle
-            // 
-            this.btnRectangle.BackColor = System.Drawing.Color.Blue;
-            this.btnRectangle.FlatAppearance.BorderSize = 0;
-            this.btnRectangle.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnRectangle.ForeColor = System.Drawing.Color.White;
-            this.btnRectangle.Image = global::DrawEveything.Properties.Resources.rectangle;
-            this.btnRectangle.Location = new System.Drawing.Point(108, 206);
-            this.btnRectangle.Name = "btnRectangle";
-            this.btnRectangle.Size = new System.Drawing.Size(80, 80);
-            this.btnRectangle.TabIndex = 5;
-            this.btnRectangle.Text = "Square";
-            this.btnRectangle.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.btnRectangle.UseVisualStyleBackColor = false;
-            this.btnRectangle.Click += new System.EventHandler(this.btnRectangle_Click);
-            // 
-            // btn_line
-            // 
-            this.btn_line.BackColor = System.Drawing.Color.Blue;
-            this.btn_line.FlatAppearance.BorderSize = 0;
-            this.btn_line.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_line.ForeColor = System.Drawing.Color.White;
-            this.btn_line.Image = global::DrawEveything.Properties.Resources.line;
-            this.btn_line.Location = new System.Drawing.Point(16, 206);
-            this.btn_line.Name = "btn_line";
-            this.btn_line.Size = new System.Drawing.Size(80, 80);
-            this.btn_line.TabIndex = 4;
-            this.btn_line.Text = "Line";
-            this.btn_line.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.btn_line.UseVisualStyleBackColor = false;
-            this.btn_line.Click += new System.EventHandler(this.btn_line_Click);
-            // 
-            // btn_elipse
-            // 
-            this.btn_elipse.BackColor = System.Drawing.Color.Blue;
-            this.btn_elipse.FlatAppearance.BorderSize = 0;
-            this.btn_elipse.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_elipse.ForeColor = System.Drawing.Color.White;
-            this.btn_elipse.Image = global::DrawEveything.Properties.Resources.circle;
-            this.btn_elipse.Location = new System.Drawing.Point(108, 120);
-            this.btn_elipse.Name = "btn_elipse";
-            this.btn_elipse.Size = new System.Drawing.Size(80, 80);
-            this.btn_elipse.TabIndex = 3;
-            this.btn_elipse.Text = "Elipse";
-            this.btn_elipse.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.btn_elipse.UseVisualStyleBackColor = false;
-            this.btn_elipse.Click += new System.EventHandler(this.btn_elipse_Click);
-            // 
-            // btn_fill
-            // 
-            this.btn_fill.BackColor = System.Drawing.Color.Blue;
-            this.btn_fill.FlatAppearance.BorderSize = 0;
-            this.btn_fill.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_fill.ForeColor = System.Drawing.Color.White;
-            this.btn_fill.Image = global::DrawEveything.Properties.Resources.bucket;
-            this.btn_fill.Location = new System.Drawing.Point(16, 120);
-            this.btn_fill.Name = "btn_fill";
-            this.btn_fill.Size = new System.Drawing.Size(80, 80);
-            this.btn_fill.TabIndex = 2;
-            this.btn_fill.Text = "Fill";
-            this.btn_fill.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.btn_fill.UseVisualStyleBackColor = false;
-            this.btn_fill.Click += new System.EventHandler(this.btn_fill_Click);
-            // 
-            // btn_Eraser
-            // 
-            this.btn_Eraser.BackColor = System.Drawing.Color.Blue;
-            this.btn_Eraser.FlatAppearance.BorderSize = 0;
-            this.btn_Eraser.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_Eraser.ForeColor = System.Drawing.Color.White;
-            this.btn_Eraser.Image = global::DrawEveything.Properties.Resources.eraser;
-            this.btn_Eraser.Location = new System.Drawing.Point(108, 34);
-            this.btn_Eraser.Name = "btn_Eraser";
-            this.btn_Eraser.Size = new System.Drawing.Size(80, 80);
-            this.btn_Eraser.TabIndex = 1;
-            this.btn_Eraser.Text = "Eraser";
-            this.btn_Eraser.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.btn_Eraser.UseVisualStyleBackColor = false;
-            this.btn_Eraser.Click += new System.EventHandler(this.btn_Eraser_Click);
-            // 
-            // btn_pencil
-            // 
-            this.btn_pencil.BackColor = System.Drawing.Color.Blue;
-            this.btn_pencil.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.btn_pencil.FlatAppearance.BorderSize = 0;
-            this.btn_pencil.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_pencil.ForeColor = System.Drawing.Color.White;
-            this.btn_pencil.Image = global::DrawEveything.Properties.Resources.pencil;
-            this.btn_pencil.ImageAlign = System.Drawing.ContentAlignment.BottomLeft;
-            this.btn_pencil.Location = new System.Drawing.Point(16, 34);
-            this.btn_pencil.Name = "btn_pencil";
-            this.btn_pencil.Size = new System.Drawing.Size(80, 80);
-            this.btn_pencil.TabIndex = 0;
-            this.btn_pencil.Text = "Pencil";
-            this.btn_pencil.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.btn_pencil.UseVisualStyleBackColor = false;
-            this.btn_pencil.Click += new System.EventHandler(this.btn_pencil_Click);
-            // 
             // FrmPlay
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -655,7 +657,7 @@
             this.Controls.Add(this.pgssBarCoolDown);
             this.Controls.Add(this.btnStart);
             this.Controls.Add(this.lbRoom);
-            this.Controls.Add(this.lbHintAnswer);
+            this.Controls.Add(this.lbAnswer);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.tb20);
@@ -684,9 +686,10 @@
             this.Controls.Add(this.panelPaint);
             this.Name = "FrmPlay";
             this.Text = "Play";
-            this.Activated += new System.EventHandler(this.FrmPlay_Activated);
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FrmPlay_FormClosing);
             this.Load += new System.EventHandler(this.FrmPlay_Load);
+            this.MouseEnter += new System.EventHandler(this.FrmPlay_MouseEnter);
+            this.MouseLeave += new System.EventHandler(this.FrmPlay_MouseLeave);
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
             this.panel2.ResumeLayout(false);
@@ -743,7 +746,7 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.ComboBox cmbWidth;
         private System.Windows.Forms.Button btnSave;
-        private System.Windows.Forms.Label lbHintAnswer;
+        private System.Windows.Forms.Label lbAnswer;
         private System.Windows.Forms.Button btnTopic2;
         private System.Windows.Forms.Button btnTopic1;
         private System.Windows.Forms.Label lbRoom;

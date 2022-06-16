@@ -27,7 +27,7 @@ namespace DrawEveything
             con = new SqlConnection();
             //Truyền vào chuỗi kết nối tới cơ sở dữ liệu
             //Gọi Application.StartupPath để lấy đường dẫn tới thư mục chứa file chạy chương trình 
-            con.ConnectionString = @"Data Source=WINDOWS-10;Initial Catalog=ACCOUNT;Integrated Security=True";
+            con.ConnectionString = @"Data Source=DESKTOP-QPN0QKO\SQLEXPRESS;Initial Catalog=master;Integrated Security=True";
             //Gọi phương thức Load dự liệu
             LoadDuLieu("Select * from Account");
         }

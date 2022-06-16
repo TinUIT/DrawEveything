@@ -91,7 +91,7 @@ namespace DrawEveything
             Socket client = (Socket)obj;
             int room = 0;
             Player player = new Player();
-            string answer= "";
+            
             while (true)
             {
                 try
@@ -155,21 +155,58 @@ namespace DrawEveything
                         case "answer":
                             if (room == 1)
                             {
-                                foreach (Socket socket in clientList1)
+                                if (receive.chat == answer)
                                 {
-                                    if (receive.chat == answer)
+                                    for (int i = 0; i < clientList1.Count; i++)
                                     {
-                                        respone.chat = "đã trả lời đúng";
+                                        if (client == clientList1[i])
+                                        {
+                                            room1[i].setMark(15);
+                                            if(room1[i].getMark() >= 200)
+                                            {
+
+                                            }
+
+                                            int y = 0;
+                                            foreach (Player p in room1)
+                                            {
+                                                receive.players[y] = p.Uname;
+                                                receive.marks[y] = room1[y].getMark();
+                                                y++;
+                                            }
+                                        }
+                                    }
+
+                                    foreach (Socket socket in clientList1)
+                                    {
+                                        receive.chat = "ĐÃ TRẢ LỜI ĐÚNG";
                                         socket.Send(SerializeData(receive));
                                     }
                                 }
                             }
                             else if (room == 2)
                             {
-                                foreach (Socket socket in clientList2)
+                                if (receive.chat == answer)
                                 {
-                                    if (socket != client && socket != null)
+                                    for (int i = 0; i < clientList2.Count; i++)
                                     {
+                                        if (client == clientList2[i])
+                                        {
+                                            room2[i].setMark(15);
+
+                                            int y = 0;
+                                            foreach (Player p in room2)
+                                            {
+                                                receive.players[y] = p.Uname;
+                                                receive.marks[y] = room1[y].getMark();
+                                                y++;
+                                            }
+                                        }
+                                    }
+
+                                    foreach (Socket socket in clientList2)
+                                    {
+                                        receive.chat = "ĐÃ TRẢ LỜI ĐÚNG";
                                         socket.Send(SerializeData(receive));
                                     }
                                 }
@@ -253,6 +290,7 @@ namespace DrawEveything
                                     int i = 0;
                                     foreach (Player p in room1)
                                     {
+                                        respone.marks[i] = room1[i].getMark();
                                         respone.players[i] = p.Uname;
                                         i++;
                                     }
@@ -274,7 +312,8 @@ namespace DrawEveything
 
                                     int i = 0;
                                     foreach (Player p in room2)
-                                    {                                       
+                                    {
+                                        respone.marks[i] = room1[i].getMark();
                                         respone.players[i] = receive.Username;
                                         i++;
                                     }
@@ -308,7 +347,7 @@ namespace DrawEveything
         public static string sIP = "127.0.0.1";
         public int PORT = 9999;
         public const int BUFFER = 1024*5000;
-        
+        string answer = "";
         //public bool isRecieve = false;
 
         public bool Send(object data)

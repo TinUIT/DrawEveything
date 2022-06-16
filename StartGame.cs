@@ -33,6 +33,12 @@ namespace DrawEveything
             this.Close();
         }
 
-
+        private void btnGuide_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            DrawEverything.Guide guide = new DrawEverything.Guide();
+            guide.ShowDialog();
+            this.Close();
+        }
     }
 }

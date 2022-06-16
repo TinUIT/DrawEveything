@@ -36,5 +36,15 @@ namespace DrawEveything
         {
             return Room;   
         }
+
+        public int getMark()
+        {
+            return Marked;
+        }
+
+        public void setMark(int mark)
+        {
+            Marked += mark;
+        }
     }
 }

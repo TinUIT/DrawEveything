@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace DrawEverything
 {
-    public partial class guide : Form
+    public partial class Guide : Form
     {
-        public guide()
+        public Guide()
         {
             InitializeComponent();
         }

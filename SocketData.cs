@@ -13,7 +13,7 @@ namespace DrawEveything
     {
         public string Username, Password;
         public string Status = "";
-
+        public int marked;
         public string chat, topic1, topic2, chosenTopic;
         
         public bool start = false;
@@ -23,7 +23,7 @@ namespace DrawEveything
 
         public byte[] image;
         public string[] players = new string[10];
-        
+        public int[] marks = new int[10];
         public SocketData() {
             for (int i = 0; i < 10; i++)
             {
