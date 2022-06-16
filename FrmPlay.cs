@@ -79,6 +79,11 @@ namespace DrawEveything
                             }
                         }
                         AddAnswer(receive.Username + ": " + receive.chat);
+                        if(receive.done)
+                        {
+                            pgssBarCoolDown.Value = 0;
+                            timer.Stop();
+                        }
                         break;
                     case "start":
                         btnStart.Enabled = false;
@@ -302,7 +307,7 @@ namespace DrawEveything
             socket.Send(choose);
             start = false;
             lbAnswer.Visible = true;
-            lbAnswer.Text = btnTopic1.Text;
+            lbAnswer.Text = btnTopic2.Text;
             btnTopic1.Visible = false;
             btnTopic1.Enabled = false;
             btnTopic2.Visible = false;
@@ -397,20 +402,6 @@ namespace DrawEveything
         private void FrmPlay_MouseEnter(object sender, EventArgs e)
         {
             if(start)
-            {
-                btnTopic1.Visible = true;
-                btnTopic1.Enabled = true;
-                btnTopic1.Text = receive.topic1;
-
-                btnTopic2.Visible = true;
-                btnTopic2.Enabled = true;
-                btnTopic2.Text = receive.topic2;
-            }
-        }
-
-        private void FrmPlay_MouseLeave(object sender, EventArgs e)
-        {
-            if (start)
             {
                 btnTopic1.Visible = true;
                 btnTopic1.Enabled = true;

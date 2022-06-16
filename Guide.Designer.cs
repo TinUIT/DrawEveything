@@ -31,6 +31,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Guide));
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.btExit = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -59,12 +60,29 @@
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
             // 
+            // btExit
+            // 
+            this.btExit.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.btExit.FlatAppearance.BorderColor = System.Drawing.Color.CornflowerBlue;
+            this.btExit.FlatAppearance.BorderSize = 2;
+            this.btExit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btExit.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btExit.Location = new System.Drawing.Point(278, 636);
+            this.btExit.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btExit.Name = "btExit";
+            this.btExit.Size = new System.Drawing.Size(90, 49);
+            this.btExit.TabIndex = 24;
+            this.btExit.Text = "Exit";
+            this.btExit.UseVisualStyleBackColor = false;
+            this.btExit.Click += new System.EventHandler(this.btExit_Click);
+            // 
             // Guide
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
-            this.ClientSize = new System.Drawing.Size(681, 646);
+            this.ClientSize = new System.Drawing.Size(681, 698);
+            this.Controls.Add(this.btExit);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.pictureBox1);
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
@@ -81,5 +99,6 @@
 
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.Button btExit;
     }
 }

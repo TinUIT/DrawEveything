@@ -15,7 +15,7 @@ namespace DrawEveything
         public string Status = "";
         public int marked;
         public string chat, topic1, topic2, chosenTopic;
-        
+        public bool done = false;
         public bool start = false;
         public int Room = 0;
         public int NumberOfRoom1 = 0;

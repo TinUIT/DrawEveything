@@ -174,6 +174,14 @@ namespace DrawEveything
                                                 receive.marks[y] = room1[y].getMark();
                                                 y++;
                                             }
+
+                                            if(y == room1.Count - 1)
+                                            {
+                                                receive.done = true;
+                                                start(receive, respone);
+                                            }
+
+                                            break;
                                         }
                                     }
 
@@ -181,6 +189,16 @@ namespace DrawEveything
                                     {
                                         receive.chat = "ĐÃ TRẢ LỜI ĐÚNG";
                                         socket.Send(SerializeData(receive));
+                                    }
+                                }
+                                else
+                                {
+                                    foreach (Socket socket in clientList1)
+                                    {
+                                        if (socket != client && socket != null)
+                                        {
+                                            socket.Send(SerializeData(receive));
+                                        }
                                     }
                                 }
                             }
@@ -201,6 +219,14 @@ namespace DrawEveything
                                                 receive.marks[y] = room1[y].getMark();
                                                 y++;
                                             }
+
+                                            if (y == room1.Count - 1)
+                                            {
+                                                receive.done = true;
+                                                start(receive, respone);
+                                            }
+
+                                            break;
                                         }
                                     }
 
@@ -208,6 +234,16 @@ namespace DrawEveything
                                     {
                                         receive.chat = "ĐÃ TRẢ LỜI ĐÚNG";
                                         socket.Send(SerializeData(receive));
+                                    }
+                                }
+                                else
+                                {
+                                    foreach (Socket socket in clientList2)
+                                    {
+                                        if (socket != client && socket != null)
+                                        {
+                                            socket.Send(SerializeData(receive));
+                                        }
                                     }
                                 }
                             }
@@ -219,60 +255,7 @@ namespace DrawEveything
                             client.Send(SerializeData(respone));
                             break;
                         case "start":
-                            Play play = new Play();
-                            Random rd = new Random();
-                            int Numrd = 0;
-                            int Numrd1 = rd.Next(0, play.topic.Length);
-                            int Numrd2;
-                            do
-                            {
-                                Numrd2 = rd.Next(0, play.topic.Length);
-                            }
-                            while (Numrd1 == Numrd2);
-
-                            respone.Status = "start";
-                            if (clientList1.Count > 1)
-                            {
-                                Numrd = rd.Next(0, clientList1.Count - 1);                              
-                            }
-                            if (clientList2.Count > 1)
-                            {
-                                Numrd = rd.Next(0, clientList2.Count - 1);
-                            }
-                            if (receive.Room == 1)
-                            {
-                                foreach (Socket socket in clientList1)
-                                {
-                                    if (socket == clientList1[Numrd])
-                                    {
-                                        respone.start = true;
-                                        respone.topic1 = play.topic[Numrd1];
-                                        respone.topic2 = play.topic[Numrd2];
-                                        clientList1[Numrd].Send(SerializeData(respone));
-                                    }
-                                    else
-                                    {
-                                        respone.start = false;
-                                        socket.Send(SerializeData(respone));
-                                    }
-                                }
-                            }
-                            else if (receive.Room == 2)
-                            {
-                                foreach (Socket socket in clientList2)
-                                {
-                                    if (socket == clientList2[Numrd])
-                                    {
-                                        respone.start = true;
-                                        clientList2[Numrd].Send(SerializeData(respone));
-                                    }
-                                    else
-                                    {
-                                        respone.start = false;
-                                        socket.Send(SerializeData(respone));
-                                    }
-                                }
-                            }
+                            start(receive,respone);
                             break;
                         case "topic":
                             answer = receive.chosenTopic;
@@ -337,6 +320,64 @@ namespace DrawEveything
                     {
                         clientList2.Remove(client);
                         room2.Remove(player);
+                    }
+                }
+            }
+        }
+
+        public void start(SocketData receive, SocketData respone)
+        {
+            Play play = new Play();
+            Random rd = new Random();
+            int Numrd = 0;
+            int Numrd1 = rd.Next(0, play.topic.Length);
+            int Numrd2;
+            do
+            {
+                Numrd2 = rd.Next(0, play.topic.Length);
+            }
+            while (Numrd1 == Numrd2);
+
+            respone.Status = "start";
+            if (clientList1.Count > 1)
+            {
+                Numrd = rd.Next(0, clientList1.Count - 1);
+            }
+            if (clientList2.Count > 1)
+            {
+                Numrd = rd.Next(0, clientList2.Count - 1);
+            }
+            if (receive.Room == 1)
+            {
+                foreach (Socket socket in clientList1)
+                {
+                    if (socket == clientList1[Numrd])
+                    {
+                        respone.start = true;
+                        respone.topic1 = play.topic[Numrd1];
+                        respone.topic2 = play.topic[Numrd2];
+                        clientList1[Numrd].Send(SerializeData(respone));
+                    }
+                    else
+                    {
+                        respone.start = false;
+                        socket.Send(SerializeData(respone));
+                    }
+                }
+            }
+            else if (receive.Room == 2)
+            {
+                foreach (Socket socket in clientList2)
+                {
+                    if (socket == clientList2[Numrd])
+                    {
+                        respone.start = true;
+                        clientList2[Numrd].Send(SerializeData(respone));
+                    }
+                    else
+                    {
+                        respone.start = false;
+                        socket.Send(SerializeData(respone));
                     }
                 }
             }
