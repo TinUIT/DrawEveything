@@ -324,7 +324,6 @@ namespace DrawEveything
                 }
                 catch (Exception ex)
                 {
-                    SocketData respone = new SocketData();
                     if (room == 1)
                     {
                         clientList1.Remove(client);    
