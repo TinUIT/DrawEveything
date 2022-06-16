@@ -61,6 +61,10 @@ namespace DrawEveything
                     room.ShowDialog();
                     this.Close();
                 }
+                else if (receive.Status == "Exist")
+                {
+                    MessageBox.Show("User này đang hoạt động");
+                }
                 else
                 {
                     MessageBox.Show("Sai thông tin đăng nhập, vui lòng nhập lại");
