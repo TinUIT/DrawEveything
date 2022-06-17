@@ -277,6 +277,8 @@ namespace DrawEveything
                             break;
                         case "topic":
                             answer = receive.chosenTopic;
+                            respone.Status = "topic";
+                            client.Send(SerializeData(respone));
                             break;
                             case "out":
                             List_user.Remove(receive.Username);

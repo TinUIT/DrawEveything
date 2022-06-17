@@ -15,11 +15,18 @@ namespace DrawEveything
         {
             InitializeComponent();
             socket = socketManager;
+
             pgssBarCoolDown.Step = 100;
-            pgssBarCoolDown.Maximum = 90000;
+            pgssBarCoolDown.Maximum = 100000;
             pgssBarCoolDown.Value = 0;
+            timer = new System.Windows.Forms.Timer();
+            timerChoose = new System.Windows.Forms.Timer();
             timer.Interval = 100;
-            timer.Enabled = true;
+            timer.Tick += timer1_Tick;
+            timer.Enabled = false;
+            timerChoose.Enabled = false;
+            timerChoose.Interval = 10;
+            timerChoose.Tick += timer1_Tick;
 
             panelPaint.Enabled = false;
             bm = new Bitmap(pic.Width, pic.Height);
@@ -49,16 +56,6 @@ namespace DrawEveything
         {
             pgssBarCoolDown.PerformStep();
 
-            if (start)
-            {
-                btnTopic1.Visible = true;
-                btnTopic1.Enabled = true;
-                btnTopic1.Text = receive.topic1;
-
-                btnTopic2.Visible = true;
-                btnTopic2.Enabled = true;
-                btnTopic2.Text = receive.topic2;
-            }
         }
 
         private void Receive()
@@ -96,6 +93,7 @@ namespace DrawEveything
                         }
                         break;
                     case "start":
+                        istimer = true;
                         g = Graphics.FromImage(bm);
                         g.Clear(Color.White);
                         pic.Image = bm;
@@ -107,12 +105,6 @@ namespace DrawEveything
                             panelPaint.Enabled = true;
                             btnAnswer.Enabled = false;
                             tbAnswer.Enabled = false;
-                            timer.Start();
-                            if (itimer == 0)
-                            {
-                                timer.Tick += new EventHandler(timer1_Tick);
-                                itimer = 1;
-                            }
                             pgssBarCoolDown.Value = 0;
                         }
                         break;
@@ -120,7 +112,7 @@ namespace DrawEveything
                         if (receive.done)
                         {
                             pgssBarCoolDown.Value = 0;
-                            timer.Stop();
+                            istimer = false;
                             panelPaint.Enabled = false;
                             btnAnswer.Enabled = true;
                             tbAnswer.Enabled = true;
@@ -133,7 +125,10 @@ namespace DrawEveything
                         this.Hide();
                         Top top = new Top();
                         top.ShowDialog();
-                        this.Close();
+                        //this.Close();
+                        break;
+                    case "topic":
+                        isChoose = true;
                         break;
                     default:                       
                         for(int i = 0; i < textBoxesName.Count; i++)
@@ -153,13 +148,15 @@ namespace DrawEveything
 
         SocketManager socket;
         SocketData receive;
-        System.Windows.Forms.Timer timer = new System.Windows.Forms.Timer();
+        System.Windows.Forms.Timer timer;
+        System.Windows.Forms.Timer timerChoose;
         Player player = new Player();
         List<TextBox> textBoxesName = new List<TextBox>();
         List<TextBox> textBoxesMarked = new List<TextBox>();
         bool start = false;
-        int itimer = 0;
+        bool istimer = false;
         bool isAnswer = false;
+        bool isChoose = false;
         #region paint
         Bitmap bm;
         Graphics g;
@@ -440,12 +437,12 @@ namespace DrawEveything
             this.Hide();
             Room room = new Room(socket);
             room.ShowDialog();
-            //socket.Close();
+            socket.Close();
         }
 
-        private void FrmPlay_MouseEnter(object sender, EventArgs e)
+        public void checkTurn()
         {
-            if(start)
+            if (start)
             {
                 btnTopic1.Visible = true;
                 btnTopic1.Enabled = true;
@@ -455,6 +452,27 @@ namespace DrawEveything
                 btnTopic2.Enabled = true;
                 btnTopic2.Text = receive.topic2;
             }
+
+            if (istimer)
+            {
+                timerChoose.Enabled = true;
+                if (lbAnswer.Visible || isChoose)
+                {
+                    timerChoose.Enabled = false;
+                    pgssBarCoolDown.Value = 0;
+                    timer.Enabled = true;
+                }
+            }
+        }
+
+        private void FrmPlay_Deactivate(object sender, EventArgs e)
+        {
+            checkTurn();
+        }
+
+        private void FrmPlay_MouseEnter(object sender, EventArgs e)
+        {
+            checkTurn();
         }
 
         public void Fill(Bitmap bm, int x, int y, Color new_clr)
