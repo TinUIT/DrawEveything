@@ -10,6 +10,16 @@ using System.Windows.Forms;
 
 namespace DrawEveything
 {
+   class ReadOnly
+    {
+        public readonly string player_online;
+        public ReadOnly(string temp)
+        {
+            player_online = temp;
+        }
+        
+
+    }
     public class SocketManager
     {
         #region Client
@@ -92,7 +102,7 @@ namespace DrawEveything
             Socket client = (Socket)obj;
             int room = 0;
             Player player = new Player();
-            
+            ReadOnly player_temp = null;
             while (true)
             {
                 try
@@ -113,6 +123,7 @@ namespace DrawEveything
                                 if (!List_user.Contains(receive.Username))
                                 {
                                     List_user.Add(receive.Username);
+                                    player_temp = new ReadOnly(receive.Username);   
                                 }
                                 else 
                                     respone.Status = "Exist";
@@ -280,8 +291,21 @@ namespace DrawEveything
                             respone.Status = "topic";
                             client.Send(SerializeData(respone));
                             break;
-                            case "out":
-                            List_user.Remove(receive.Username);
+                         case "outroom":
+                            if (room == 1)
+                            {
+                                clientList1.Remove(client);
+                                room1.Remove(player);
+                                if (room1.Count == 0)
+                                    Answered1 = 0;
+                            }
+                            else if (room == 2)
+                            {
+                                clientList2.Remove(client);
+                                room2.Remove(player);
+                                if (room1.Count == 0)
+                                    Answered1 = 0;
+                            }
                             break;
                         default:
                             room = receive.Room;
@@ -334,22 +358,11 @@ namespace DrawEveything
                     }
 
                 }
+                catch (InvalidCastException ex){
+                }
                 catch (Exception ex)
                 {
-                    if (room == 1)
-                    {
-                        clientList1.Remove(client);    
-                        room1.Remove(player);
-                        if (room1.Count == 0)
-                            Answered1 = 0;
-                    }
-                    else if (room == 2)
-                    {
-                        clientList2.Remove(client);
-                        room2.Remove(player);
-                        if (room1.Count == 0)
-                            Answered1 = 0;
-                    }
+                    List_user.Remove(player_temp.player_online);
                 }
             }
         }
