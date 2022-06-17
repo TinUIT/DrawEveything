@@ -438,7 +438,7 @@ namespace DrawEveything
             outroom.Username = player.getUsername();
             socket.Send (outroom);
             this.Hide();
-            Room room = new Room();
+            Room room = new Room(socket);
             room.ShowDialog();
             //socket.Close();
         }
