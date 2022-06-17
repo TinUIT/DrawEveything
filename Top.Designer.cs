@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Top));
             this.top3 = new System.Windows.Forms.Label();
             this.top1 = new System.Windows.Forms.Label();
             this.top2 = new System.Windows.Forms.Label();
@@ -121,7 +120,7 @@
             // pictureBox1
             // 
             this.pictureBox1.BackColor = System.Drawing.Color.Transparent;
-            this.pictureBox1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox1.BackgroundImage")));
+            this.pictureBox1.BackgroundImage = global::DrawEveything.Properties.Resources.top3_removebg_preview;
             this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.pictureBox1.Location = new System.Drawing.Point(668, 349);
             this.pictureBox1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
@@ -133,7 +132,7 @@
             // pictureBox2
             // 
             this.pictureBox2.BackColor = System.Drawing.Color.Transparent;
-            this.pictureBox2.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox2.BackgroundImage")));
+            this.pictureBox2.BackgroundImage = global::DrawEveything.Properties.Resources.top2_removebg_preview__2_;
             this.pictureBox2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.pictureBox2.Location = new System.Drawing.Point(140, 349);
             this.pictureBox2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
@@ -145,7 +144,7 @@
             // pictureBox3
             // 
             this.pictureBox3.BackColor = System.Drawing.Color.Transparent;
-            this.pictureBox3.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox3.BackgroundImage")));
+            this.pictureBox3.BackgroundImage = global::DrawEveything.Properties.Resources.top1_removebg_preview;
             this.pictureBox3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.pictureBox3.Location = new System.Drawing.Point(372, 49);
             this.pictureBox3.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);

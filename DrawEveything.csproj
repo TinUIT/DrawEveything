@@ -200,5 +200,14 @@
   <ItemGroup>
     <None Include="Resources\anh1.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\top1-removebg-preview.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\top2-removebg-preview %282%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\top3-removebg-preview.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
