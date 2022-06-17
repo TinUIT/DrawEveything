@@ -1,4 +1,4 @@
-﻿namespace DrawEverything
+namespace DrawEverything
 {
     partial class Guide
     {
@@ -39,13 +39,12 @@
             // 
             this.textBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
             this.textBox1.Font = new System.Drawing.Font("Times New Roman", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox1.Location = new System.Drawing.Point(35, 282);
-            this.textBox1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.textBox1.Location = new System.Drawing.Point(31, 226);
             this.textBox1.Multiline = true;
             this.textBox1.Name = "textBox1";
             this.textBox1.ReadOnly = true;
             this.textBox1.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textBox1.Size = new System.Drawing.Size(617, 332);
+            this.textBox1.Size = new System.Drawing.Size(549, 266);
             this.textBox1.TabIndex = 1;
             this.textBox1.Text = resources.GetString("textBox1.Text");
             // 
@@ -53,10 +52,9 @@
             // 
             this.pictureBox1.BackgroundImage = global::DrawEveything.Properties.Resources.anh1;
             this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox1.Location = new System.Drawing.Point(94, 28);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.pictureBox1.Location = new System.Drawing.Point(84, 22);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(478, 229);
+            this.pictureBox1.Size = new System.Drawing.Size(425, 183);
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
             // 
@@ -66,11 +64,10 @@
             this.btExit.FlatAppearance.BorderColor = System.Drawing.Color.CornflowerBlue;
             this.btExit.FlatAppearance.BorderSize = 2;
             this.btExit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btExit.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btExit.Location = new System.Drawing.Point(278, 636);
-            this.btExit.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btExit.Font = new System.Drawing.Font("Algerian", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btExit.Location = new System.Drawing.Point(253, 507);
             this.btExit.Name = "btExit";
-            this.btExit.Size = new System.Drawing.Size(90, 49);
+            this.btExit.Size = new System.Drawing.Size(80, 39);
             this.btExit.TabIndex = 24;
             this.btExit.Text = "Exit";
             this.btExit.UseVisualStyleBackColor = false;
@@ -78,14 +75,13 @@
             // 
             // Guide
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
-            this.ClientSize = new System.Drawing.Size(681, 698);
+            this.ClientSize = new System.Drawing.Size(605, 558);
             this.Controls.Add(this.btExit);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.pictureBox1);
-            this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "Guide";
             this.Text = "Guide";
             this.Load += new System.EventHandler(this.guide_Load);
