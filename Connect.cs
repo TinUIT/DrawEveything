@@ -26,8 +26,7 @@ namespace DrawEveything
         {
             socket.setIP(tbIP.Text);
             this.Hide();
-            socket.Close();
-            Server server = new Server();
+            Server server = new Server(socket);
             server.ShowDialog();
             this.Close();
         }
@@ -51,9 +50,8 @@ namespace DrawEveything
                     socket.setIP(tbIP.Text);
                     if (socket.ConnectServer())
                     {
-                        StartGame start = new StartGame();
+                        StartGame start = new StartGame(socket);
                         this.Hide();
-                        socket.Close();
                         start.ShowDialog();
                         this.Close();
                     }

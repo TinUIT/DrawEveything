@@ -13,19 +13,20 @@ namespace DrawEveything
 {
     public partial class Register : Form
     {
-        public Register()
+        public Register(SocketManager socketmanager)
         {
             InitializeComponent();
 
             CheckForIllegalCrossThreadCalls = false;
+
+            socket = socketmanager;
         }
-        SocketManager socket = new SocketManager();
+        SocketManager socket;
         _Regex reg = new _Regex();
         private void btExit_Click(object sender, EventArgs e)
         {
             this.Hide();
-            socket.Close();
-            StartGame startGame = new StartGame();
+            StartGame startGame = new StartGame(socket);
             startGame.ShowDialog();
             this.Close();
         }
@@ -79,7 +80,6 @@ namespace DrawEveything
                 }
                 if (tbPassword.Text == tbRetypePassword.Text)
                 {
-                    socket.ConnectServer();
                     SocketData login = new SocketData(tbUserName.Text, SHA256(tbPassword.Text));
                     login.Status = "register";
                     socket.Send(login);
@@ -87,14 +87,13 @@ namespace DrawEveything
                     if (receive.Status == "Success")
                     {
                         this.Hide();
-                        socket.Close();
-                        Room room = new Room();
+                        Room room = new Room(socket);
                         room.ShowDialog();
                         this.Close();
                     }
                     else
                     {
-                        MessageBox.Show("Đã có Username này. Vui lòng Username khác");
+                        MessageBox.Show("Đã có Username này. Vui lòng nhập Username khác");
                     }
                 }
                 else

@@ -171,18 +171,11 @@ namespace DrawEveything
                                         {
                                             room1[i].setMark(15);
                                             room1[Numrd].setMark(5);
-                                            if(room1[i].getMark() >= 200)
+                                            if(room1[i].getMark() >= 50)
                                             {
-                                                respone.Status = "end";
-
+                                                receive.Status = "end";
                                             }
-                                            if (Answered1 == room1.Count - 1)
-                                            {
-                                                respone.Status = "stop";
-                                                respone.done = true;
-                                                clientList1[Numrd].Send(SerializeData(respone));
-                                                start(receive, respone, Numrd);
-                                            }
+                                           
                                             int y = 0;
                                             foreach (Player p in room1)
                                             {
@@ -199,6 +192,14 @@ namespace DrawEveything
                                     {
                                         receive.chat = "ĐÃ TRẢ LỜI ĐÚNG";
                                         socket.Send(SerializeData(receive));
+                                    }
+                                    if (Answered1 == room1.Count - 1)
+                                    {
+                                        Answered1 = 0;
+                                        respone.Status = "stop";
+                                        respone.done = true;
+                                        clientList1[Numrd].Send(SerializeData(respone));
+                                        Numrd = start(receive, respone, Numrd);
                                     }
                                 }
                                 else
@@ -227,13 +228,6 @@ namespace DrawEveything
                                             {
 
                                             }
-                                            if (Answered2 == room2.Count - 1)
-                                            {
-                                                respone.Status = "stop";
-                                                respone.done = true;
-                                                clientList2[Numrd].Send(SerializeData(respone));
-                                                start(receive, respone, Numrd);
-                                            }
 
                                             int y = 0;
                                             foreach (Player p in room2)
@@ -251,6 +245,13 @@ namespace DrawEveything
                                     {
                                         receive.chat = "ĐÃ TRẢ LỜI ĐÚNG";
                                         socket.Send(SerializeData(receive));
+                                    }
+                                    if (Answered2 == room2.Count - 1)
+                                    {
+                                        respone.Status = "stop";
+                                        respone.done = true;
+                                        clientList2[Numrd].Send(SerializeData(respone));
+                                        start(receive, respone, Numrd);
                                     }
                                 }
                                 else

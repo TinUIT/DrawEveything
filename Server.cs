@@ -8,14 +8,15 @@ namespace DrawEveything
 {
     public partial class Server : Form
     {
-        public Server()
+        public Server(SocketManager socketManager)
         {
             InitializeComponent();
+            socket = socketManager;
             socket.CreateServer();
             tbIP.Text = socket.getIP();
             
-        }    
-        public SocketManager socket = new SocketManager();
+        }
+        public SocketManager socket;
 
         SqlDataAdapter dap;//Khai báo đối tượng gắn kết DataSource với DataSet
         DataSet ds;//Đối tượng chứa dữ liệu tại local
@@ -27,7 +28,7 @@ namespace DrawEveything
             con = new SqlConnection();
             //Truyền vào chuỗi kết nối tới cơ sở dữ liệu
             //Gọi Application.StartupPath để lấy đường dẫn tới thư mục chứa file chạy chương trình 
-            con.ConnectionString = @"Data Source=WINDOWS-10;Initial Catalog=ACCOUNT;Integrated Security=True";
+            con.ConnectionString = @"Data Source=DESKTOP-QPN0QKO\SQLEXPRESS;Initial Catalog=master;Integrated Security=True";
             //Gọi phương thức Load dự liệu
             LoadDuLieu("Select * from Account");
         }

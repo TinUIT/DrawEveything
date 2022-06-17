@@ -11,9 +11,10 @@ namespace DrawEveything
 {
     public partial class FrmPlay : Form
     {
-        public FrmPlay()
+        public FrmPlay(SocketManager socketManager)
         {
             InitializeComponent();
+            socket = socketManager;
             pgssBarCoolDown.Step = 100;
             pgssBarCoolDown.Maximum = 90000;
             pgssBarCoolDown.Value = 0;
@@ -34,7 +35,6 @@ namespace DrawEveything
             CheckForIllegalCrossThreadCalls = false;
             
             lbRoom.Text = "Room " + player.getRoom().ToString(); 
-            socket.ConnectServer();
             SocketData room = new SocketData();
             room.Room = player.getRoom();
             room.Username = player.getUsername();
@@ -96,6 +96,9 @@ namespace DrawEveything
                         }
                         break;
                     case "start":
+                        g = Graphics.FromImage(bm);
+                        g.Clear(Color.White);
+                        pic.Image = bm;
                         isAnswer = false;
                         btnStart.Enabled = false;
                         if (receive.start)
@@ -121,10 +124,16 @@ namespace DrawEveything
                             panelPaint.Enabled = false;
                             btnAnswer.Enabled = true;
                             tbAnswer.Enabled = true;
+                            lbAnswer.Visible = false;
                             g.Clear(Color.White);
                             pic.Image = bm;
-                            Send();
                         }
+                        break;
+                    case "end":
+                        this.Hide();
+                        Top top = new Top();
+                        top.ShowDialog();
+                        this.Close();
                         break;
                     default:                       
                         for(int i = 0; i < textBoxesName.Count; i++)
@@ -142,7 +151,7 @@ namespace DrawEveything
         }
 
 
-        SocketManager socket = new SocketManager();
+        SocketManager socket;
         SocketData receive;
         System.Windows.Forms.Timer timer = new System.Windows.Forms.Timer();
         Player player = new Player();
@@ -172,7 +181,6 @@ namespace DrawEveything
             using (MemoryStream ms = new MemoryStream())
             {
                 image.Save(ms, ImageFormat.Jpeg);
-                ms.ToArray();
 
                 SocketData paint = new SocketData();
                 paint.image = ms.ToArray();
@@ -425,7 +433,7 @@ namespace DrawEveything
 
         private void FrmPlay_FormClosing(object sender, FormClosingEventArgs e)
         {
-
+            //socket.Close();
         }
 
         private void FrmPlay_MouseEnter(object sender, EventArgs e)

@@ -7,10 +7,10 @@ namespace DrawEveything
 {
     public partial class Room : Form
     {
-        public Room()
+        public Room(SocketManager  socketManager)
         {
             InitializeComponent();
-            socket.ConnectServer();
+            socket = socketManager;
 
             Thread thread = new Thread(Send);
             thread.IsBackground = true;
@@ -68,15 +68,14 @@ namespace DrawEveything
         }
 
         Player player = new Player();
-        SocketManager socket = new SocketManager();
+        SocketManager socket;
         bool join = false;
         private void btnRoom1_Click(object sender, EventArgs e)
         {
             join = true;
-            socket.Close();
             Player player = new Player(1);
             this.Hide();
-            FrmPlay room = new FrmPlay();
+            FrmPlay room = new FrmPlay(socket);
             room.ShowDialog();
             this.Close();
         }
@@ -84,10 +83,9 @@ namespace DrawEveything
         private void btnRoom2_Click(object sender, EventArgs e)
         {
             join = true;
-            socket.Close();
             Player player = new Player(2);
             this.Hide();
-            FrmPlay room = new FrmPlay();
+            FrmPlay room = new FrmPlay(socket);
             room.ShowDialog();
             this.Close();
         }

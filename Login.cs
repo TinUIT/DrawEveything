@@ -13,14 +13,17 @@ namespace DrawEveything
 {
     public partial class Login : Form
     {
-        public Login()
+        public Login(SocketManager socketmanager)
         {
             InitializeComponent();
 
             CheckForIllegalCrossThreadCalls = false;
+
+            socket = socketmanager;
+            
         }
 
-        SocketManager socket = new SocketManager();
+        SocketManager socket;
 
         public string SHA256(string plainText)
         {
@@ -47,7 +50,6 @@ namespace DrawEveything
         {
             if (tbPassword.Text != "" && tbUserName.Text != "")
             {
-                socket.ConnectServer();
                 SocketData login = new SocketData(tbUserName.Text, SHA256(tbPassword.Text));
                 login.Status = "login";
                 socket.Send(login);
@@ -56,8 +58,7 @@ namespace DrawEveything
                 {
                     Player player = new Player(tbUserName.Text, login.Password);
                     this.Hide();
-                    socket.Close();
-                    Room room = new Room();
+                    Room room = new Room(socket);
                     room.ShowDialog();
                     this.Close();
                 }
@@ -80,8 +81,7 @@ namespace DrawEveything
         private void btExit_Click(object sender, EventArgs e)
         {
             this.Hide();
-            socket.Close();
-            StartGame startGame = new StartGame();
+            StartGame startGame = new StartGame(socket);
             startGame.ShowDialog();
             this.Close();
         }

@@ -24,9 +24,6 @@ namespace DrawEverything
 
         private void btExit_Click(object sender, EventArgs e)
         {
-            this.Hide();
-            StartGame startGame = new StartGame();
-            startGame.ShowDialog();
             this.Close();
         }
     }

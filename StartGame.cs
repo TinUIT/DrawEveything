@@ -12,15 +12,16 @@ namespace DrawEveything
 {
     public partial class StartGame : Form
     {
-        public StartGame()
+        public StartGame(SocketManager socketManager)
         {
             InitializeComponent();
+            socket = socketManager;
         }
-
+        SocketManager socket;
         private void btnLogin_Click(object sender, EventArgs e)
         {
             this.Hide();
-            Login login = new Login();
+            Login login = new Login(socket);
             login.ShowDialog();
             this.Close();
         }
@@ -28,7 +29,7 @@ namespace DrawEveything
         private void btnRegister_Click(object sender, EventArgs e)
         {
             this.Hide();
-            Register register = new Register();
+            Register register = new Register(socket);
             register.ShowDialog();
             this.Close();
         }
@@ -38,7 +39,7 @@ namespace DrawEveything
             this.Hide();
             DrawEverything.Guide guide = new DrawEverything.Guide();
             guide.ShowDialog();
-            this.Close();
+            this.Show();
         }
     }
 }
