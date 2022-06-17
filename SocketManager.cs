@@ -278,6 +278,9 @@ namespace DrawEveything
                         case "topic":
                             answer = receive.chosenTopic;
                             break;
+                            case "out":
+                            List_user.Remove(receive.Username);
+                            break;
                         default:
                             room = receive.Room;
                             if (room == 1)
