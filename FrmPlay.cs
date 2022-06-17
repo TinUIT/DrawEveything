@@ -430,11 +430,11 @@ namespace DrawEveything
 
         private void FrmPlay_FormClosing(object sender, FormClosingEventArgs e)
         {
-            SocketData outroom = new SocketData();
-            outroom.Status = "out";
-            outroom.Username = player.getUsername();
-            socket.Send (outroom);
             this.Hide();
+            SocketData outr = new SocketData();
+            outr.Status = "outroom";
+            outr.Username = player.getUsername();
+            socket.Send(outr);
             Room room = new Room(socket);
             room.ShowDialog();
             socket.Close();
