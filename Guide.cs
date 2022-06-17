@@ -1,4 +1,4 @@
-﻿using DrawEveything;
+using DrawEveything;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
