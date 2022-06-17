@@ -1,4 +1,4 @@
-﻿namespace DrawEveything
+namespace DrawEveything
 {
     partial class StartGame
     {
@@ -41,10 +41,9 @@
             // 
             this.logo.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.logo.Image = global::DrawEveything.Properties.Resources.Ảnh1;
-            this.logo.Location = new System.Drawing.Point(223, 31);
-            this.logo.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.logo.Location = new System.Drawing.Point(198, 25);
             this.logo.Name = "logo";
-            this.logo.Size = new System.Drawing.Size(667, 248);
+            this.logo.Size = new System.Drawing.Size(593, 198);
             this.logo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.logo.TabIndex = 5;
             this.logo.TabStop = false;
@@ -55,10 +54,10 @@
             this.panel1.Controls.Add(this.btnGuide);
             this.panel1.Controls.Add(this.btnRegister);
             this.panel1.Controls.Add(this.btnLogin);
-            this.panel1.Location = new System.Drawing.Point(117, 285);
+            this.panel1.Location = new System.Drawing.Point(104, 228);
             this.panel1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(889, 410);
+            this.panel1.Size = new System.Drawing.Size(790, 328);
             this.panel1.TabIndex = 4;
             // 
             // btnGuide
@@ -70,12 +69,12 @@
             this.btnGuide.BorderSize = 0;
             this.btnGuide.FlatAppearance.BorderSize = 0;
             this.btnGuide.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnGuide.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnGuide.Font = new System.Drawing.Font("Algerian", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnGuide.ForeColor = System.Drawing.Color.White;
-            this.btnGuide.Location = new System.Drawing.Point(339, 284);
+            this.btnGuide.Location = new System.Drawing.Point(301, 227);
             this.btnGuide.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnGuide.Name = "btnGuide";
-            this.btnGuide.Size = new System.Drawing.Size(224, 70);
+            this.btnGuide.Size = new System.Drawing.Size(199, 56);
             this.btnGuide.TabIndex = 2;
             this.btnGuide.Text = "Guide";
             this.btnGuide.TextColor = System.Drawing.Color.White;
@@ -91,12 +90,12 @@
             this.btnRegister.BorderSize = 0;
             this.btnRegister.FlatAppearance.BorderSize = 0;
             this.btnRegister.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnRegister.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRegister.Font = new System.Drawing.Font("Algerian", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnRegister.ForeColor = System.Drawing.Color.White;
-            this.btnRegister.Location = new System.Drawing.Point(339, 198);
+            this.btnRegister.Location = new System.Drawing.Point(301, 158);
             this.btnRegister.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnRegister.Name = "btnRegister";
-            this.btnRegister.Size = new System.Drawing.Size(224, 70);
+            this.btnRegister.Size = new System.Drawing.Size(199, 56);
             this.btnRegister.TabIndex = 1;
             this.btnRegister.Text = "Register";
             this.btnRegister.TextColor = System.Drawing.Color.White;
@@ -112,12 +111,12 @@
             this.btnLogin.BorderSize = 0;
             this.btnLogin.FlatAppearance.BorderSize = 0;
             this.btnLogin.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnLogin.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnLogin.Font = new System.Drawing.Font("Algerian", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnLogin.ForeColor = System.Drawing.Color.White;
-            this.btnLogin.Location = new System.Drawing.Point(339, 112);
+            this.btnLogin.Location = new System.Drawing.Point(301, 90);
             this.btnLogin.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnLogin.Name = "btnLogin";
-            this.btnLogin.Size = new System.Drawing.Size(224, 70);
+            this.btnLogin.Size = new System.Drawing.Size(199, 56);
             this.btnLogin.TabIndex = 0;
             this.btnLogin.Text = "Login";
             this.btnLogin.TextColor = System.Drawing.Color.White;
@@ -126,10 +125,10 @@
             // 
             // StartGame
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
-            this.ClientSize = new System.Drawing.Size(1119, 726);
+            this.ClientSize = new System.Drawing.Size(995, 581);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.logo);
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
